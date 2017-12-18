@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loongray.ecms.mybatis.dao.SysDictCityMapper">
+  <resultMap id="BaseResultMap" type="com.loongray.ecms.mybatis.pojo.SysDictCity">
+    <result column="ProvinceId" jdbcType="INTEGER" property="provinceid" />
+    <result column="CityId" jdbcType="INTEGER" property="cityid" />
+    <result column="CityName" jdbcType="VARCHAR" property="cityname" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.loongray.ecms.mybatis.pojo.SysDictCity">
+    <result column="Description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <sql id="Blob_Column_List">
+    Description
+  </sql>
+  <insert id="insert" parameterType="com.loongray.ecms.mybatis.pojo.SysDictCity">
+    insert into sysdictcity (ProvinceId, CityId, CityName, 
+      Description)
+    values (#{provinceid,jdbcType=INTEGER}, #{cityid,jdbcType=INTEGER}, #{cityname,jdbcType=VARCHAR}, 
+      #{description,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.loongray.ecms.mybatis.pojo.SysDictCity">
+    insert into sysdictcity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="provinceid != null">
+        ProvinceId,
+      </if>
+      <if test="cityid != null">
+        CityId,
+      </if>
+      <if test="cityname != null">
+        CityName,
+      </if>
+      <if test="description != null">
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="provinceid != null">
+        #{provinceid,jdbcType=INTEGER},
+      </if>
+      <if test="cityid != null">
+        #{cityid,jdbcType=INTEGER},
+      </if>
+      <if test="cityname != null">
+        #{cityname,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loongray.ecms.mybatis.dao.CfgMeasurePointMapper">
+  <resultMap id="BaseResultMap" type="com.loongray.ecms.mybatis.pojo.CfgMeasurePoint">
+    <id column="PointId" jdbcType="INTEGER" property="pointid" />
+    <result column="MachineId" jdbcType="INTEGER" property="machineid" />
+    <result column="PointCode" jdbcType="VARCHAR" property="pointcode" />
+    <result column="PointName" jdbcType="VARCHAR" property="pointname" />
+    <result column="CompanyId" jdbcType="INTEGER" property="companyid" />
+    <result column="InfoCreateUserId" jdbcType="INTEGER" property="infocreateuserid" />
+    <result column="InfoCreateTime" jdbcType="TIMESTAMP" property="infocreatetime" />
+    <result column="Deleted" jdbcType="BIT" property="deleted" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.loongray.ecms.mybatis.pojo.CfgMeasurePoint">
+    <result column="Description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PointId, MachineId, PointCode, PointName, CompanyId, InfoCreateUserId, InfoCreateTime, 
+    Deleted
+  </sql>
+  <sql id="Blob_Column_List">
+    Description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cfgmeasurepoint
+    where PointId = #{pointid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cfgmeasurepoint
+    where PointId = #{pointid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.loongray.ecms.mybatis.pojo.CfgMeasurePoint">
+    insert into cfgmeasurepoint (PointId, MachineId, PointCode, 
+      PointName, CompanyId, InfoCreateUserId, 
+      InfoCreateTime, Deleted, Description
+      )
+    values (#{pointid,jdbcType=INTEGER}, #{machineid,jdbcType=INTEGER}, #{pointcode,jdbcType=VARCHAR}, 
+      #{pointname,jdbcType=VARCHAR}, #{companyid,jdbcType=INTEGER}, #{infocreateuserid,jdbcType=INTEGER}, 
+      #{infocreatetime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}, #{description,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.loongray.ecms.mybatis.pojo.CfgMeasurePoint">
+    insert into cfgmeasurepoint
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pointid != null">
+        PointId,
+      </if>
+      <if test="machineid != null">
+        MachineId,
+      </if>
+      <if test="pointcode != null">
+        PointCode,
+      </if>
+      <if test="pointname != null">
+        PointName,
+      </if>
+      <if test="companyid != null">
+        CompanyId,
+      </if>
+      <if test="infocreateuserid != null">
+        InfoCreateUserId,
+      </if>
+      <if test="infocreatetime != null">
+        InfoCreateTime,
+      </if>
+      <if test="deleted != null">
+        Deleted,
+      </if>
+      <if test="description != null">
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pointid != null">
+        #{pointid,jdbcType=INTEGER},
+      </if>
+      <if test="machineid != null">
+        #{machineid,jdbcType=INTEGER},
+      </if>
+      <if test="pointcode != null">
+        #{pointcode,jdbcType=VARCHAR},
+      </if>
+      <if test="pointname != null">
+        #{pointname,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null">
+        #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="infocreateuserid != null">
+        #{infocreateuserid,jdbcType=INTEGER},
+      </if>
+      <if test="infocreatetime != null">
+        #{infocreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=BIT},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.loongray.ecms.mybatis.pojo.CfgMeasurePoint">
+    update cfgmeasurepoint
+    <set>
+      <if test="machineid != null">
+        MachineId = #{machineid,jdbcType=INTEGER},
+      </if>
+      <if test="pointcode != null">
+        PointCode = #{pointcode,jdbcType=VARCHAR},
+      </if>
+      <if test="pointname != null">
+        PointName = #{pointname,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null">
+        CompanyId = #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="infocreateuserid != null">
+        InfoCreateUserId = #{infocreateuserid,jdbcType=INTEGER},
+      </if>
+      <if test="infocreatetime != null">
+        InfoCreateTime = #{infocreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        Deleted = #{deleted,jdbcType=BIT},
+      </if>
+      <if test="description != null">
+        Description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where PointId = #{pointid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.loongray.ecms.mybatis.pojo.CfgMeasurePoint">
+    update cfgmeasurepoint
+    set MachineId = #{machineid,jdbcType=INTEGER},
+      PointCode = #{pointcode,jdbcType=VARCHAR},
+      PointName = #{pointname,jdbcType=VARCHAR},
+      CompanyId = #{companyid,jdbcType=INTEGER},
+      InfoCreateUserId = #{infocreateuserid,jdbcType=INTEGER},
+      InfoCreateTime = #{infocreatetime,jdbcType=TIMESTAMP},
+      Deleted = #{deleted,jdbcType=BIT},
+      Description = #{description,jdbcType=LONGVARCHAR}
+    where PointId = #{pointid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.loongray.ecms.mybatis.pojo.CfgMeasurePoint">
+    update cfgmeasurepoint
+    set MachineId = #{machineid,jdbcType=INTEGER},
+      PointCode = #{pointcode,jdbcType=VARCHAR},
+      PointName = #{pointname,jdbcType=VARCHAR},
+      CompanyId = #{companyid,jdbcType=INTEGER},
+      InfoCreateUserId = #{infocreateuserid,jdbcType=INTEGER},
+      InfoCreateTime = #{infocreatetime,jdbcType=TIMESTAMP},
+      Deleted = #{deleted,jdbcType=BIT}
+    where PointId = #{pointid,jdbcType=INTEGER}
+  </update>
+</mapper>

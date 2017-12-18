@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loongray.ecms.mybatis.dao.SysDictItemMapper">
+  <resultMap id="BaseResultMap" type="com.loongray.ecms.mybatis.pojo.SysDictItem">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="TypeId" jdbcType="INTEGER" property="typeid" />
+    <result column="ItemId" jdbcType="INTEGER" property="itemid" />
+    <result column="ItemCode" jdbcType="VARCHAR" property="itemcode" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.loongray.ecms.mybatis.pojo.SysDictItemWithBLOBs">
+    <result column="ItemValue" jdbcType="LONGVARCHAR" property="itemvalue" />
+    <result column="Description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, TypeId, ItemId, ItemCode
+  </sql>
+  <sql id="Blob_Column_List">
+    ItemValue, Description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sysdictitem
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sysdictitem
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.loongray.ecms.mybatis.pojo.SysDictItemWithBLOBs">
+    insert into sysdictitem (ID, TypeId, ItemId, 
+      ItemCode, ItemValue, Description
+      )
+    values (#{id,jdbcType=INTEGER}, #{typeid,jdbcType=INTEGER}, #{itemid,jdbcType=INTEGER}, 
+      #{itemcode,jdbcType=VARCHAR}, #{itemvalue,jdbcType=LONGVARCHAR}, #{description,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.loongray.ecms.mybatis.pojo.SysDictItemWithBLOBs">
+    insert into sysdictitem
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="typeid != null">
+        TypeId,
+      </if>
+      <if test="itemid != null">
+        ItemId,
+      </if>
+      <if test="itemcode != null">
+        ItemCode,
+      </if>
+      <if test="itemvalue != null">
+        ItemValue,
+      </if>
+      <if test="description != null">
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="typeid != null">
+        #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="itemid != null">
+        #{itemid,jdbcType=INTEGER},
+      </if>
+      <if test="itemcode != null">
+        #{itemcode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemvalue != null">
+        #{itemvalue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.loongray.ecms.mybatis.pojo.SysDictItemWithBLOBs">
+    update sysdictitem
+    <set>
+      <if test="typeid != null">
+        TypeId = #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="itemid != null">
+        ItemId = #{itemid,jdbcType=INTEGER},
+      </if>
+      <if test="itemcode != null">
+        ItemCode = #{itemcode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemvalue != null">
+        ItemValue = #{itemvalue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="description != null">
+        Description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.loongray.ecms.mybatis.pojo.SysDictItemWithBLOBs">
+    update sysdictitem
+    set TypeId = #{typeid,jdbcType=INTEGER},
+      ItemId = #{itemid,jdbcType=INTEGER},
+      ItemCode = #{itemcode,jdbcType=VARCHAR},
+      ItemValue = #{itemvalue,jdbcType=LONGVARCHAR},
+      Description = #{description,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.loongray.ecms.mybatis.pojo.SysDictItem">
+    update sysdictitem
+    set TypeId = #{typeid,jdbcType=INTEGER},
+      ItemId = #{itemid,jdbcType=INTEGER},
+      ItemCode = #{itemcode,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

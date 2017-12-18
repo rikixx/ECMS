@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loongray.ecms.mybatis.dao.SysDictEnergyCategoryMapper">
+  <resultMap id="BaseResultMap" type="com.loongray.ecms.mybatis.pojo.SysDictEnergyCategory">
+    <id column="UniqueId" jdbcType="INTEGER" property="uniqueid" />
+    <result column="EnergyCategoryCode" jdbcType="VARCHAR" property="energycategorycode" />
+    <result column="EnergyCategoryName" jdbcType="VARCHAR" property="energycategoryname" />
+    <result column="ConvertParam" jdbcType="DOUBLE" property="convertparam" />
+    <result column="Unit" jdbcType="VARCHAR" property="unit" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.loongray.ecms.mybatis.pojo.SysDictEnergyCategory">
+    <result column="Description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    UniqueId, EnergyCategoryCode, EnergyCategoryName, ConvertParam, Unit
+  </sql>
+  <sql id="Blob_Column_List">
+    Description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sysdictenergycategory
+    where UniqueId = #{uniqueid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sysdictenergycategory
+    where UniqueId = #{uniqueid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.loongray.ecms.mybatis.pojo.SysDictEnergyCategory">
+    insert into sysdictenergycategory (UniqueId, EnergyCategoryCode, EnergyCategoryName, 
+      ConvertParam, Unit, Description
+      )
+    values (#{uniqueid,jdbcType=INTEGER}, #{energycategorycode,jdbcType=VARCHAR}, #{energycategoryname,jdbcType=VARCHAR}, 
+      #{convertparam,jdbcType=DOUBLE}, #{unit,jdbcType=VARCHAR}, #{description,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.loongray.ecms.mybatis.pojo.SysDictEnergyCategory">
+    insert into sysdictenergycategory
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uniqueid != null">
+        UniqueId,
+      </if>
+      <if test="energycategorycode != null">
+        EnergyCategoryCode,
+      </if>
+      <if test="energycategoryname != null">
+        EnergyCategoryName,
+      </if>
+      <if test="convertparam != null">
+        ConvertParam,
+      </if>
+      <if test="unit != null">
+        Unit,
+      </if>
+      <if test="description != null">
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uniqueid != null">
+        #{uniqueid,jdbcType=INTEGER},
+      </if>
+      <if test="energycategorycode != null">
+        #{energycategorycode,jdbcType=VARCHAR},
+      </if>
+      <if test="energycategoryname != null">
+        #{energycategoryname,jdbcType=VARCHAR},
+      </if>
+      <if test="convertparam != null">
+        #{convertparam,jdbcType=DOUBLE},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.loongray.ecms.mybatis.pojo.SysDictEnergyCategory">
+    update sysdictenergycategory
+    <set>
+      <if test="energycategorycode != null">
+        EnergyCategoryCode = #{energycategorycode,jdbcType=VARCHAR},
+      </if>
+      <if test="energycategoryname != null">
+        EnergyCategoryName = #{energycategoryname,jdbcType=VARCHAR},
+      </if>
+      <if test="convertparam != null">
+        ConvertParam = #{convertparam,jdbcType=DOUBLE},
+      </if>
+      <if test="unit != null">
+        Unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        Description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where UniqueId = #{uniqueid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.loongray.ecms.mybatis.pojo.SysDictEnergyCategory">
+    update sysdictenergycategory
+    set EnergyCategoryCode = #{energycategorycode,jdbcType=VARCHAR},
+      EnergyCategoryName = #{energycategoryname,jdbcType=VARCHAR},
+      ConvertParam = #{convertparam,jdbcType=DOUBLE},
+      Unit = #{unit,jdbcType=VARCHAR},
+      Description = #{description,jdbcType=LONGVARCHAR}
+    where UniqueId = #{uniqueid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.loongray.ecms.mybatis.pojo.SysDictEnergyCategory">
+    update sysdictenergycategory
+    set EnergyCategoryCode = #{energycategorycode,jdbcType=VARCHAR},
+      EnergyCategoryName = #{energycategoryname,jdbcType=VARCHAR},
+      ConvertParam = #{convertparam,jdbcType=DOUBLE},
+      Unit = #{unit,jdbcType=VARCHAR}
+    where UniqueId = #{uniqueid,jdbcType=INTEGER}
+  </update>
+</mapper>

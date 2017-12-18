@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loongray.ecms.mybatis.dao.CfgCompanyMapper">
+  <resultMap id="BaseResultMap" type="com.loongray.ecms.mybatis.pojo.CfgCompany">
+    <id column="RoomId" jdbcType="INTEGER" property="roomid" />
+    <result column="BuildingId" jdbcType="INTEGER" property="buildingid" />
+    <result column="NeedStatistic" jdbcType="BIT" property="needstatistic" />
+    <result column="RoomName" jdbcType="VARCHAR" property="roomname" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.loongray.ecms.mybatis.pojo.CfgCompany">
+    <result column="Description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    RoomId, BuildingId, NeedStatistic, RoomName
+  </sql>
+  <sql id="Blob_Column_List">
+    Description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cfgroom
+    where RoomId = #{roomid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cfgroom
+    where RoomId = #{roomid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.loongray.ecms.mybatis.pojo.CfgCompany">
+    insert into cfgroom (RoomId, BuildingId, NeedStatistic, 
+      RoomName, Description)
+    values (#{roomid,jdbcType=INTEGER}, #{buildingid,jdbcType=INTEGER}, #{needstatistic,jdbcType=BIT}, 
+      #{roomname,jdbcType=VARCHAR}, #{description,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.loongray.ecms.mybatis.pojo.CfgCompany">
+    insert into cfgroom
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roomid != null">
+        RoomId,
+      </if>
+      <if test="buildingid != null">
+        BuildingId,
+      </if>
+      <if test="needstatistic != null">
+        NeedStatistic,
+      </if>
+      <if test="roomname != null">
+        RoomName,
+      </if>
+      <if test="description != null">
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roomid != null">
+        #{roomid,jdbcType=INTEGER},
+      </if>
+      <if test="buildingid != null">
+        #{buildingid,jdbcType=INTEGER},
+      </if>
+      <if test="needstatistic != null">
+        #{needstatistic,jdbcType=BIT},
+      </if>
+      <if test="roomname != null">
+        #{roomname,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.loongray.ecms.mybatis.pojo.CfgCompany">
+    update cfgroom
+    <set>
+      <if test="buildingid != null">
+        BuildingId = #{buildingid,jdbcType=INTEGER},
+      </if>
+      <if test="needstatistic != null">
+        NeedStatistic = #{needstatistic,jdbcType=BIT},
+      </if>
+      <if test="roomname != null">
+        RoomName = #{roomname,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        Description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where RoomId = #{roomid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.loongray.ecms.mybatis.pojo.CfgCompany">
+    update cfgroom
+    set BuildingId = #{buildingid,jdbcType=INTEGER},
+      NeedStatistic = #{needstatistic,jdbcType=BIT},
+      RoomName = #{roomname,jdbcType=VARCHAR},
+      Description = #{description,jdbcType=LONGVARCHAR}
+    where RoomId = #{roomid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.loongray.ecms.mybatis.pojo.CfgCompany">
+    update cfgroom
+    set BuildingId = #{buildingid,jdbcType=INTEGER},
+      NeedStatistic = #{needstatistic,jdbcType=BIT},
+      RoomName = #{roomname,jdbcType=VARCHAR}
+    where RoomId = #{roomid,jdbcType=INTEGER}
+  </update>
+</mapper>

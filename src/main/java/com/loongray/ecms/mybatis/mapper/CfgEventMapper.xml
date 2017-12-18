@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loongray.ecms.mybatis.dao.CfgEventMapper">
+  <resultMap id="BaseResultMap" type="com.loongray.ecms.mybatis.pojo.CfgEvent">
+    <id column="EventId" jdbcType="INTEGER" property="eventid" />
+    <result column="EquipmentId" jdbcType="INTEGER" property="equipmentid" />
+    <result column="SignalGroupId" jdbcType="INTEGER" property="signalgroupid" />
+    <result column="PointId" jdbcType="INTEGER" property="pointid" />
+    <result column="EventName" jdbcType="VARCHAR" property="eventname" />
+    <result column="TagName" jdbcType="VARCHAR" property="tagname" />
+    <result column="Value" jdbcType="INTEGER" property="value" />
+    <result column="NeedNotify" jdbcType="BIT" property="neednotify" />
+    <result column="LastMinute" jdbcType="INTEGER" property="lastminute" />
+    <result column="UseEmail" jdbcType="BIT" property="useemail" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.loongray.ecms.mybatis.pojo.CfgEventWithBLOBs">
+    <result column="Contents" jdbcType="LONGVARCHAR" property="contents" />
+    <result column="RecieverName" jdbcType="LONGVARCHAR" property="recievername" />
+    <result column="RecieverPhoneNum" jdbcType="LONGVARCHAR" property="recieverphonenum" />
+    <result column="RecieverEmail" jdbcType="LONGVARCHAR" property="recieveremail" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    EventId, EquipmentId, SignalGroupId, PointId, EventName, TagName, Value, NeedNotify, 
+    LastMinute, UseEmail
+  </sql>
+  <sql id="Blob_Column_List">
+    Contents, RecieverName, RecieverPhoneNum, RecieverEmail
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cfgevent
+    where EventId = #{eventid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cfgevent
+    where EventId = #{eventid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.loongray.ecms.mybatis.pojo.CfgEventWithBLOBs">
+    insert into cfgevent (EventId, EquipmentId, SignalGroupId, 
+      PointId, EventName, TagName, 
+      Value, NeedNotify, LastMinute, 
+      UseEmail, Contents, RecieverName, 
+      RecieverPhoneNum, RecieverEmail
+      )
+    values (#{eventid,jdbcType=INTEGER}, #{equipmentid,jdbcType=INTEGER}, #{signalgroupid,jdbcType=INTEGER}, 
+      #{pointid,jdbcType=INTEGER}, #{eventname,jdbcType=VARCHAR}, #{tagname,jdbcType=VARCHAR}, 
+      #{value,jdbcType=INTEGER}, #{neednotify,jdbcType=BIT}, #{lastminute,jdbcType=INTEGER}, 
+      #{useemail,jdbcType=BIT}, #{contents,jdbcType=LONGVARCHAR}, #{recievername,jdbcType=LONGVARCHAR}, 
+      #{recieverphonenum,jdbcType=LONGVARCHAR}, #{recieveremail,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.loongray.ecms.mybatis.pojo.CfgEventWithBLOBs">
+    insert into cfgevent
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="eventid != null">
+        EventId,
+      </if>
+      <if test="equipmentid != null">
+        EquipmentId,
+      </if>
+      <if test="signalgroupid != null">
+        SignalGroupId,
+      </if>
+      <if test="pointid != null">
+        PointId,
+      </if>
+      <if test="eventname != null">
+        EventName,
+      </if>
+      <if test="tagname != null">
+        TagName,
+      </if>
+      <if test="value != null">
+        Value,
+      </if>
+      <if test="neednotify != null">
+        NeedNotify,
+      </if>
+      <if test="lastminute != null">
+        LastMinute,
+      </if>
+      <if test="useemail != null">
+        UseEmail,
+      </if>
+      <if test="contents != null">
+        Contents,
+      </if>
+      <if test="recievername != null">
+        RecieverName,
+      </if>
+      <if test="recieverphonenum != null">
+        RecieverPhoneNum,
+      </if>
+      <if test="recieveremail != null">
+        RecieverEmail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="eventid != null">
+        #{eventid,jdbcType=INTEGER},
+      </if>
+      <if test="equipmentid != null">
+        #{equipmentid,jdbcType=INTEGER},
+      </if>
+      <if test="signalgroupid != null">
+        #{signalgroupid,jdbcType=INTEGER},
+      </if>
+      <if test="pointid != null">
+        #{pointid,jdbcType=INTEGER},
+      </if>
+      <if test="eventname != null">
+        #{eventname,jdbcType=VARCHAR},
+      </if>
+      <if test="tagname != null">
+        #{tagname,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=INTEGER},
+      </if>
+      <if test="neednotify != null">
+        #{neednotify,jdbcType=BIT},
+      </if>
+      <if test="lastminute != null">
+        #{lastminute,jdbcType=INTEGER},
+      </if>
+      <if test="useemail != null">
+        #{useemail,jdbcType=BIT},
+      </if>
+      <if test="contents != null">
+        #{contents,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="recievername != null">
+        #{recievername,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="recieverphonenum != null">
+        #{recieverphonenum,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="recieveremail != null">
+        #{recieveremail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.loongray.ecms.mybatis.pojo.CfgEventWithBLOBs">
+    update cfgevent
+    <set>
+      <if test="equipmentid != null">
+        EquipmentId = #{equipmentid,jdbcType=INTEGER},
+      </if>
+      <if test="signalgroupid != null">
+        SignalGroupId = #{signalgroupid,jdbcType=INTEGER},
+      </if>
+      <if test="pointid != null">
+        PointId = #{pointid,jdbcType=INTEGER},
+      </if>
+      <if test="eventname != null">
+        EventName = #{eventname,jdbcType=VARCHAR},
+      </if>
+      <if test="tagname != null">
+        TagName = #{tagname,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        Value = #{value,jdbcType=INTEGER},
+      </if>
+      <if test="neednotify != null">
+        NeedNotify = #{neednotify,jdbcType=BIT},
+      </if>
+      <if test="lastminute != null">
+        LastMinute = #{lastminute,jdbcType=INTEGER},
+      </if>
+      <if test="useemail != null">
+        UseEmail = #{useemail,jdbcType=BIT},
+      </if>
+      <if test="contents != null">
+        Contents = #{contents,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="recievername != null">
+        RecieverName = #{recievername,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="recieverphonenum != null">
+        RecieverPhoneNum = #{recieverphonenum,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="recieveremail != null">
+        RecieverEmail = #{recieveremail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where EventId = #{eventid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.loongray.ecms.mybatis.pojo.CfgEventWithBLOBs">
+    update cfgevent
+    set EquipmentId = #{equipmentid,jdbcType=INTEGER},
+      SignalGroupId = #{signalgroupid,jdbcType=INTEGER},
+      PointId = #{pointid,jdbcType=INTEGER},
+      EventName = #{eventname,jdbcType=VARCHAR},
+      TagName = #{tagname,jdbcType=VARCHAR},
+      Value = #{value,jdbcType=INTEGER},
+      NeedNotify = #{neednotify,jdbcType=BIT},
+      LastMinute = #{lastminute,jdbcType=INTEGER},
+      UseEmail = #{useemail,jdbcType=BIT},
+      Contents = #{contents,jdbcType=LONGVARCHAR},
+      RecieverName = #{recievername,jdbcType=LONGVARCHAR},
+      RecieverPhoneNum = #{recieverphonenum,jdbcType=LONGVARCHAR},
+      RecieverEmail = #{recieveremail,jdbcType=LONGVARCHAR}
+    where EventId = #{eventid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.loongray.ecms.mybatis.pojo.CfgEvent">
+    update cfgevent
+    set EquipmentId = #{equipmentid,jdbcType=INTEGER},
+      SignalGroupId = #{signalgroupid,jdbcType=INTEGER},
+      PointId = #{pointid,jdbcType=INTEGER},
+      EventName = #{eventname,jdbcType=VARCHAR},
+      TagName = #{tagname,jdbcType=VARCHAR},
+      Value = #{value,jdbcType=INTEGER},
+      NeedNotify = #{neednotify,jdbcType=BIT},
+      LastMinute = #{lastminute,jdbcType=INTEGER},
+      UseEmail = #{useemail,jdbcType=BIT}
+    where EventId = #{eventid,jdbcType=INTEGER}
+  </update>
+</mapper>

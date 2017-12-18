@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loongray.ecms.mybatis.dao.CfgMachineMapper">
+  <resultMap id="BaseResultMap" type="com.loongray.ecms.mybatis.pojo.CfgMachine">
+    <id column="MachineId" jdbcType="INTEGER" property="machineid" />
+    <result column="BuildingId" jdbcType="INTEGER" property="buildingid" />
+    <result column="MachineCode" jdbcType="VARCHAR" property="machinecode" />
+    <result column="MachineName" jdbcType="VARCHAR" property="machinename" />
+    <result column="IpAddress" jdbcType="VARCHAR" property="ipaddress" />
+    <result column="InfoCreateUserId" jdbcType="INTEGER" property="infocreateuserid" />
+    <result column="InfoCreateTime" jdbcType="TIMESTAMP" property="infocreatetime" />
+    <result column="Deleted" jdbcType="BIT" property="deleted" />
+    <result column="IsMainMachine" jdbcType="INTEGER" property="ismainmachine" />
+    <result column="MainMachineId" jdbcType="INTEGER" property="mainmachineid" />
+    <result column="ConnectionPort" jdbcType="INTEGER" property="connectionport" />
+    <result column="ConfigPort" jdbcType="INTEGER" property="configport" />
+    <result column="MeasureWeb" jdbcType="VARCHAR" property="measureweb" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.loongray.ecms.mybatis.pojo.CfgMachine">
+    <result column="Description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MachineId, BuildingId, MachineCode, MachineName, IpAddress, InfoCreateUserId, InfoCreateTime, 
+    Deleted, IsMainMachine, MainMachineId, ConnectionPort, ConfigPort, MeasureWeb
+  </sql>
+  <sql id="Blob_Column_List">
+    Description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cfgmachine
+    where MachineId = #{machineid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cfgmachine
+    where MachineId = #{machineid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.loongray.ecms.mybatis.pojo.CfgMachine">
+    insert into cfgmachine (MachineId, BuildingId, MachineCode, 
+      MachineName, IpAddress, InfoCreateUserId, 
+      InfoCreateTime, Deleted, IsMainMachine, 
+      MainMachineId, ConnectionPort, ConfigPort, 
+      MeasureWeb, Description)
+    values (#{machineid,jdbcType=INTEGER}, #{buildingid,jdbcType=INTEGER}, #{machinecode,jdbcType=VARCHAR}, 
+      #{machinename,jdbcType=VARCHAR}, #{ipaddress,jdbcType=VARCHAR}, #{infocreateuserid,jdbcType=INTEGER}, 
+      #{infocreatetime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}, #{ismainmachine,jdbcType=INTEGER}, 
+      #{mainmachineid,jdbcType=INTEGER}, #{connectionport,jdbcType=INTEGER}, #{configport,jdbcType=INTEGER}, 
+      #{measureweb,jdbcType=VARCHAR}, #{description,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.loongray.ecms.mybatis.pojo.CfgMachine">
+    insert into cfgmachine
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="machineid != null">
+        MachineId,
+      </if>
+      <if test="buildingid != null">
+        BuildingId,
+      </if>
+      <if test="machinecode != null">
+        MachineCode,
+      </if>
+      <if test="machinename != null">
+        MachineName,
+      </if>
+      <if test="ipaddress != null">
+        IpAddress,
+      </if>
+      <if test="infocreateuserid != null">
+        InfoCreateUserId,
+      </if>
+      <if test="infocreatetime != null">
+        InfoCreateTime,
+      </if>
+      <if test="deleted != null">
+        Deleted,
+      </if>
+      <if test="ismainmachine != null">
+        IsMainMachine,
+      </if>
+      <if test="mainmachineid != null">
+        MainMachineId,
+      </if>
+      <if test="connectionport != null">
+        ConnectionPort,
+      </if>
+      <if test="configport != null">
+        ConfigPort,
+      </if>
+      <if test="measureweb != null">
+        MeasureWeb,
+      </if>
+      <if test="description != null">
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="machineid != null">
+        #{machineid,jdbcType=INTEGER},
+      </if>
+      <if test="buildingid != null">
+        #{buildingid,jdbcType=INTEGER},
+      </if>
+      <if test="machinecode != null">
+        #{machinecode,jdbcType=VARCHAR},
+      </if>
+      <if test="machinename != null">
+        #{machinename,jdbcType=VARCHAR},
+      </if>
+      <if test="ipaddress != null">
+        #{ipaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="infocreateuserid != null">
+        #{infocreateuserid,jdbcType=INTEGER},
+      </if>
+      <if test="infocreatetime != null">
+        #{infocreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=BIT},
+      </if>
+      <if test="ismainmachine != null">
+        #{ismainmachine,jdbcType=INTEGER},
+      </if>
+      <if test="mainmachineid != null">
+        #{mainmachineid,jdbcType=INTEGER},
+      </if>
+      <if test="connectionport != null">
+        #{connectionport,jdbcType=INTEGER},
+      </if>
+      <if test="configport != null">
+        #{configport,jdbcType=INTEGER},
+      </if>
+      <if test="measureweb != null">
+        #{measureweb,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.loongray.ecms.mybatis.pojo.CfgMachine">
+    update cfgmachine
+    <set>
+      <if test="buildingid != null">
+        BuildingId = #{buildingid,jdbcType=INTEGER},
+      </if>
+      <if test="machinecode != null">
+        MachineCode = #{machinecode,jdbcType=VARCHAR},
+      </if>
+      <if test="machinename != null">
+        MachineName = #{machinename,jdbcType=VARCHAR},
+      </if>
+      <if test="ipaddress != null">
+        IpAddress = #{ipaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="infocreateuserid != null">
+        InfoCreateUserId = #{infocreateuserid,jdbcType=INTEGER},
+      </if>
+      <if test="infocreatetime != null">
+        InfoCreateTime = #{infocreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        Deleted = #{deleted,jdbcType=BIT},
+      </if>
+      <if test="ismainmachine != null">
+        IsMainMachine = #{ismainmachine,jdbcType=INTEGER},
+      </if>
+      <if test="mainmachineid != null">
+        MainMachineId = #{mainmachineid,jdbcType=INTEGER},
+      </if>
+      <if test="connectionport != null">
+        ConnectionPort = #{connectionport,jdbcType=INTEGER},
+      </if>
+      <if test="configport != null">
+        ConfigPort = #{configport,jdbcType=INTEGER},
+      </if>
+      <if test="measureweb != null">
+        MeasureWeb = #{measureweb,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        Description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where MachineId = #{machineid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.loongray.ecms.mybatis.pojo.CfgMachine">
+    update cfgmachine
+    set BuildingId = #{buildingid,jdbcType=INTEGER},
+      MachineCode = #{machinecode,jdbcType=VARCHAR},
+      MachineName = #{machinename,jdbcType=VARCHAR},
+      IpAddress = #{ipaddress,jdbcType=VARCHAR},
+      InfoCreateUserId = #{infocreateuserid,jdbcType=INTEGER},
+      InfoCreateTime = #{infocreatetime,jdbcType=TIMESTAMP},
+      Deleted = #{deleted,jdbcType=BIT},
+      IsMainMachine = #{ismainmachine,jdbcType=INTEGER},
+      MainMachineId = #{mainmachineid,jdbcType=INTEGER},
+      ConnectionPort = #{connectionport,jdbcType=INTEGER},
+      ConfigPort = #{configport,jdbcType=INTEGER},
+      MeasureWeb = #{measureweb,jdbcType=VARCHAR},
+      Description = #{description,jdbcType=LONGVARCHAR}
+    where MachineId = #{machineid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.loongray.ecms.mybatis.pojo.CfgMachine">
+    update cfgmachine
+    set BuildingId = #{buildingid,jdbcType=INTEGER},
+      MachineCode = #{machinecode,jdbcType=VARCHAR},
+      MachineName = #{machinename,jdbcType=VARCHAR},
+      IpAddress = #{ipaddress,jdbcType=VARCHAR},
+      InfoCreateUserId = #{infocreateuserid,jdbcType=INTEGER},
+      InfoCreateTime = #{infocreatetime,jdbcType=TIMESTAMP},
+      Deleted = #{deleted,jdbcType=BIT},
+      IsMainMachine = #{ismainmachine,jdbcType=INTEGER},
+      MainMachineId = #{mainmachineid,jdbcType=INTEGER},
+      ConnectionPort = #{connectionport,jdbcType=INTEGER},
+      ConfigPort = #{configport,jdbcType=INTEGER},
+      MeasureWeb = #{measureweb,jdbcType=VARCHAR}
+    where MachineId = #{machineid,jdbcType=INTEGER}
+  </update>
+</mapper>

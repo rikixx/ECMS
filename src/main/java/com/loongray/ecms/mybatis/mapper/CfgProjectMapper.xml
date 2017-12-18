@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loongray.ecms.mybatis.dao.CfgProjectMapper">
+  <resultMap id="BaseResultMap" type="com.loongray.ecms.mybatis.pojo.CfgProject">
+    <id column="ProjectId" jdbcType="INTEGER" property="projectid" />
+    <result column="ProjectName" jdbcType="VARCHAR" property="projectname" />
+    <result column="ProjectTypeId" jdbcType="INTEGER" property="projecttypeid" />
+    <result column="ProjectManager" jdbcType="VARCHAR" property="projectmanager" />
+    <result column="InfoCreateUserId" jdbcType="INTEGER" property="infocreateuserid" />
+    <result column="InfoCreateTime" jdbcType="TIMESTAMP" property="infocreatetime" />
+    <result column="Deleted" jdbcType="BIT" property="deleted" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.loongray.ecms.mybatis.pojo.CfgProjectWithBLOBs">
+    <result column="ProjectMembers" jdbcType="LONGVARCHAR" property="projectmembers" />
+    <result column="Description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ProjectId, ProjectName, ProjectTypeId, ProjectManager, InfoCreateUserId, InfoCreateTime, 
+    Deleted
+  </sql>
+  <sql id="Blob_Column_List">
+    ProjectMembers, Description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cfgproject
+    where ProjectId = #{projectid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cfgproject
+    where ProjectId = #{projectid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.loongray.ecms.mybatis.pojo.CfgProjectWithBLOBs">
+    insert into cfgproject (ProjectId, ProjectName, ProjectTypeId, 
+      ProjectManager, InfoCreateUserId, InfoCreateTime, 
+      Deleted, ProjectMembers, Description
+      )
+    values (#{projectid,jdbcType=INTEGER}, #{projectname,jdbcType=VARCHAR}, #{projecttypeid,jdbcType=INTEGER}, 
+      #{projectmanager,jdbcType=VARCHAR}, #{infocreateuserid,jdbcType=INTEGER}, #{infocreatetime,jdbcType=TIMESTAMP}, 
+      #{deleted,jdbcType=BIT}, #{projectmembers,jdbcType=LONGVARCHAR}, #{description,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.loongray.ecms.mybatis.pojo.CfgProjectWithBLOBs">
+    insert into cfgproject
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="projectid != null">
+        ProjectId,
+      </if>
+      <if test="projectname != null">
+        ProjectName,
+      </if>
+      <if test="projecttypeid != null">
+        ProjectTypeId,
+      </if>
+      <if test="projectmanager != null">
+        ProjectManager,
+      </if>
+      <if test="infocreateuserid != null">
+        InfoCreateUserId,
+      </if>
+      <if test="infocreatetime != null">
+        InfoCreateTime,
+      </if>
+      <if test="deleted != null">
+        Deleted,
+      </if>
+      <if test="projectmembers != null">
+        ProjectMembers,
+      </if>
+      <if test="description != null">
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="projectid != null">
+        #{projectid,jdbcType=INTEGER},
+      </if>
+      <if test="projectname != null">
+        #{projectname,jdbcType=VARCHAR},
+      </if>
+      <if test="projecttypeid != null">
+        #{projecttypeid,jdbcType=INTEGER},
+      </if>
+      <if test="projectmanager != null">
+        #{projectmanager,jdbcType=VARCHAR},
+      </if>
+      <if test="infocreateuserid != null">
+        #{infocreateuserid,jdbcType=INTEGER},
+      </if>
+      <if test="infocreatetime != null">
+        #{infocreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=BIT},
+      </if>
+      <if test="projectmembers != null">
+        #{projectmembers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.loongray.ecms.mybatis.pojo.CfgProjectWithBLOBs">
+    update cfgproject
+    <set>
+      <if test="projectname != null">
+        ProjectName = #{projectname,jdbcType=VARCHAR},
+      </if>
+      <if test="projecttypeid != null">
+        ProjectTypeId = #{projecttypeid,jdbcType=INTEGER},
+      </if>
+      <if test="projectmanager != null">
+        ProjectManager = #{projectmanager,jdbcType=VARCHAR},
+      </if>
+      <if test="infocreateuserid != null">
+        InfoCreateUserId = #{infocreateuserid,jdbcType=INTEGER},
+      </if>
+      <if test="infocreatetime != null">
+        InfoCreateTime = #{infocreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        Deleted = #{deleted,jdbcType=BIT},
+      </if>
+      <if test="projectmembers != null">
+        ProjectMembers = #{projectmembers,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="description != null">
+        Description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ProjectId = #{projectid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.loongray.ecms.mybatis.pojo.CfgProjectWithBLOBs">
+    update cfgproject
+    set ProjectName = #{projectname,jdbcType=VARCHAR},
+      ProjectTypeId = #{projecttypeid,jdbcType=INTEGER},
+      ProjectManager = #{projectmanager,jdbcType=VARCHAR},
+      InfoCreateUserId = #{infocreateuserid,jdbcType=INTEGER},
+      InfoCreateTime = #{infocreatetime,jdbcType=TIMESTAMP},
+      Deleted = #{deleted,jdbcType=BIT},
+      ProjectMembers = #{projectmembers,jdbcType=LONGVARCHAR},
+      Description = #{description,jdbcType=LONGVARCHAR}
+    where ProjectId = #{projectid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.loongray.ecms.mybatis.pojo.CfgProject">
+    update cfgproject
+    set ProjectName = #{projectname,jdbcType=VARCHAR},
+      ProjectTypeId = #{projecttypeid,jdbcType=INTEGER},
+      ProjectManager = #{projectmanager,jdbcType=VARCHAR},
+      InfoCreateUserId = #{infocreateuserid,jdbcType=INTEGER},
+      InfoCreateTime = #{infocreatetime,jdbcType=TIMESTAMP},
+      Deleted = #{deleted,jdbcType=BIT}
+    where ProjectId = #{projectid,jdbcType=INTEGER}
+  </update>
+</mapper>

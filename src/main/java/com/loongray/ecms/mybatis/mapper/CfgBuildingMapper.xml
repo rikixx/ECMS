@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loongray.ecms.mybatis.dao.CfgBuildingMapper">
+  <resultMap id="BaseResultMap" type="com.loongray.ecms.mybatis.pojo.CfgBuilding">
+    <id column="BuildingId" jdbcType="INTEGER" property="buildingid" />
+    <result column="GroupId" jdbcType="INTEGER" property="groupid" />
+    <result column="VPoint" jdbcType="DOUBLE" property="vpoint" />
+    <result column="HPoint" jdbcType="DOUBLE" property="hpoint" />
+    <result column="BuildingName" jdbcType="VARCHAR" property="buildingname" />
+    <result column="Year" jdbcType="VARCHAR" property="year" />
+    <result column="FloorNum" jdbcType="INTEGER" property="floornum" />
+    <result column="BuildingCategoryCode" jdbcType="VARCHAR" property="buildingcategorycode" />
+    <result column="BuildingCode" jdbcType="VARCHAR" property="buildingcode" />
+    <result column="TotalAcreage" jdbcType="DOUBLE" property="totalacreage" />
+    <result column="AirConditionAcreage" jdbcType="DOUBLE" property="airconditionacreage" />
+    <result column="WarmAcreage" jdbcType="DOUBLE" property="warmacreage" />
+    <result column="AirCondtitionType" jdbcType="VARCHAR" property="aircondtitiontype" />
+    <result column="WarmType" jdbcType="VARCHAR" property="warmtype" />
+    <result column="SizeParams" jdbcType="VARCHAR" property="sizeparams" />
+    <result column="StructureType" jdbcType="VARCHAR" property="structuretype" />
+    <result column="OutWallMaterialType" jdbcType="VARCHAR" property="outwallmaterialtype" />
+    <result column="OutWallWarmType" jdbcType="VARCHAR" property="outwallwarmtype" />
+    <result column="OutWindowType" jdbcType="VARCHAR" property="outwindowtype" />
+    <result column="GlassWindowType" jdbcType="VARCHAR" property="glasswindowtype" />
+    <result column="WindowFrameMaterialType" jdbcType="VARCHAR" property="windowframematerialtype" />
+    <result column="ElectircPrice" jdbcType="DOUBLE" property="electircprice" />
+    <result column="WaterPrice" jdbcType="DOUBLE" property="waterprice" />
+    <result column="GasPrice" jdbcType="DOUBLE" property="gasprice" />
+    <result column="WarmPrice" jdbcType="DOUBLE" property="warmprice" />
+    <result column="Direction" jdbcType="VARCHAR" property="direction" />
+    <result column="ScaleWindWall" jdbcType="VARCHAR" property="scalewindwall" />
+    <result column="ScaleLengthWidth" jdbcType="VARCHAR" property="scalelengthwidth" />
+    <result column="Extend1" jdbcType="VARCHAR" property="extend1" />
+    <result column="Extend2" jdbcType="VARCHAR" property="extend2" />
+    <result column="Extend3" jdbcType="VARCHAR" property="extend3" />
+    <result column="InfoCreateUserId" jdbcType="INTEGER" property="infocreateuserid" />
+    <result column="InfoCreateTime" jdbcType="TIMESTAMP" property="infocreatetime" />
+    <result column="Deleted" jdbcType="BIT" property="deleted" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.loongray.ecms.mybatis.pojo.CfgBuildingWithBLOBs">
+    <result column="Address" jdbcType="LONGVARCHAR" property="address" />
+    <result column="Description" jdbcType="LONGVARCHAR" property="description" />
+    <result column="Picture" jdbcType="LONGVARBINARY" property="picture" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    BuildingId, GroupId, VPoint, HPoint, BuildingName, Year, FloorNum, BuildingCategoryCode, 
+    BuildingCode, TotalAcreage, AirConditionAcreage, WarmAcreage, AirCondtitionType, 
+    WarmType, SizeParams, StructureType, OutWallMaterialType, OutWallWarmType, OutWindowType, 
+    GlassWindowType, WindowFrameMaterialType, ElectircPrice, WaterPrice, GasPrice, WarmPrice, 
+    Direction, ScaleWindWall, ScaleLengthWidth, Extend1, Extend2, Extend3, InfoCreateUserId, 
+    InfoCreateTime, Deleted
+  </sql>
+  <sql id="Blob_Column_List">
+    Address, Description, Picture
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cfgbuilding
+    where BuildingId = #{buildingid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cfgbuilding
+    where BuildingId = #{buildingid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.loongray.ecms.mybatis.pojo.CfgBuildingWithBLOBs">
+    insert into cfgbuilding (BuildingId, GroupId, VPoint, 
+      HPoint, BuildingName, Year, 
+      FloorNum, BuildingCategoryCode, BuildingCode, 
+      TotalAcreage, AirConditionAcreage, WarmAcreage, 
+      AirCondtitionType, WarmType, SizeParams, 
+      StructureType, OutWallMaterialType, OutWallWarmType, 
+      OutWindowType, GlassWindowType, WindowFrameMaterialType, 
+      ElectircPrice, WaterPrice, GasPrice, 
+      WarmPrice, Direction, ScaleWindWall, 
+      ScaleLengthWidth, Extend1, Extend2, 
+      Extend3, InfoCreateUserId, InfoCreateTime, 
+      Deleted, Address, Description, 
+      Picture)
+    values (#{buildingid,jdbcType=INTEGER}, #{groupid,jdbcType=INTEGER}, #{vpoint,jdbcType=DOUBLE}, 
+      #{hpoint,jdbcType=DOUBLE}, #{buildingname,jdbcType=VARCHAR}, #{year,jdbcType=VARCHAR}, 
+      #{floornum,jdbcType=INTEGER}, #{buildingcategorycode,jdbcType=VARCHAR}, #{buildingcode,jdbcType=VARCHAR}, 
+      #{totalacreage,jdbcType=DOUBLE}, #{airconditionacreage,jdbcType=DOUBLE}, #{warmacreage,jdbcType=DOUBLE}, 
+      #{aircondtitiontype,jdbcType=VARCHAR}, #{warmtype,jdbcType=VARCHAR}, #{sizeparams,jdbcType=VARCHAR}, 
+      #{structuretype,jdbcType=VARCHAR}, #{outwallmaterialtype,jdbcType=VARCHAR}, #{outwallwarmtype,jdbcType=VARCHAR}, 
+      #{outwindowtype,jdbcType=VARCHAR}, #{glasswindowtype,jdbcType=VARCHAR}, #{windowframematerialtype,jdbcType=VARCHAR}, 
+      #{electircprice,jdbcType=DOUBLE}, #{waterprice,jdbcType=DOUBLE}, #{gasprice,jdbcType=DOUBLE}, 
+      #{warmprice,jdbcType=DOUBLE}, #{direction,jdbcType=VARCHAR}, #{scalewindwall,jdbcType=VARCHAR}, 
+      #{scalelengthwidth,jdbcType=VARCHAR}, #{extend1,jdbcType=VARCHAR}, #{extend2,jdbcType=VARCHAR}, 
+      #{extend3,jdbcType=VARCHAR}, #{infocreateuserid,jdbcType=INTEGER}, #{infocreatetime,jdbcType=TIMESTAMP}, 
+      #{deleted,jdbcType=BIT}, #{address,jdbcType=LONGVARCHAR}, #{description,jdbcType=LONGVARCHAR}, 
+      #{picture,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.loongray.ecms.mybatis.pojo.CfgBuildingWithBLOBs">
+    insert into cfgbuilding
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="buildingid != null">
+        BuildingId,
+      </if>
+      <if test="groupid != null">
+        GroupId,
+      </if>
+      <if test="vpoint != null">
+        VPoint,
+      </if>
+      <if test="hpoint != null">
+        HPoint,
+      </if>
+      <if test="buildingname != null">
+        BuildingName,
+      </if>
+      <if test="year != null">
+        Year,
+      </if>
+      <if test="floornum != null">
+        FloorNum,
+      </if>
+      <if test="buildingcategorycode != null">
+        BuildingCategoryCode,
+      </if>
+      <if test="buildingcode != null">
+        BuildingCode,
+      </if>
+      <if test="totalacreage != null">
+        TotalAcreage,
+      </if>
+      <if test="airconditionacreage != null">
+        AirConditionAcreage,
+      </if>
+      <if test="warmacreage != null">
+        WarmAcreage,
+      </if>
+      <if test="aircondtitiontype != null">
+        AirCondtitionType,
+      </if>
+      <if test="warmtype != null">
+        WarmType,
+      </if>
+      <if test="sizeparams != null">
+        SizeParams,
+      </if>
+      <if test="structuretype != null">
+        StructureType,
+      </if>
+      <if test="outwallmaterialtype != null">
+        OutWallMaterialType,
+      </if>
+      <if test="outwallwarmtype != null">
+        OutWallWarmType,
+      </if>
+      <if test="outwindowtype != null">
+        OutWindowType,
+      </if>
+      <if test="glasswindowtype != null">
+        GlassWindowType,
+      </if>
+      <if test="windowframematerialtype != null">
+        WindowFrameMaterialType,
+      </if>
+      <if test="electircprice != null">
+        ElectircPrice,
+      </if>
+      <if test="waterprice != null">
+        WaterPrice,
+      </if>
+      <if test="gasprice != null">
+        GasPrice,
+      </if>
+      <if test="warmprice != null">
+        WarmPrice,
+      </if>
+      <if test="direction != null">
+        Direction,
+      </if>
+      <if test="scalewindwall != null">
+        ScaleWindWall,
+      </if>
+      <if test="scalelengthwidth != null">
+        ScaleLengthWidth,
+      </if>
+      <if test="extend1 != null">
+        Extend1,
+      </if>
+      <if test="extend2 != null">
+        Extend2,
+      </if>
+      <if test="extend3 != null">
+        Extend3,
+      </if>
+      <if test="infocreateuserid != null">
+        InfoCreateUserId,
+      </if>
+      <if test="infocreatetime != null">
+        InfoCreateTime,
+      </if>
+      <if test="deleted != null">
+        Deleted,
+      </if>
+      <if test="address != null">
+        Address,
+      </if>
+      <if test="description != null">
+        Description,
+      </if>
+      <if test="picture != null">
+        Picture,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="buildingid != null">
+        #{buildingid,jdbcType=INTEGER},
+      </if>
+      <if test="groupid != null">
+        #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="vpoint != null">
+        #{vpoint,jdbcType=DOUBLE},
+      </if>
+      <if test="hpoint != null">
+        #{hpoint,jdbcType=DOUBLE},
+      </if>
+      <if test="buildingname != null">
+        #{buildingname,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null">
+        #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="floornum != null">
+        #{floornum,jdbcType=INTEGER},
+      </if>
+      <if test="buildingcategorycode != null">
+        #{buildingcategorycode,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingcode != null">
+        #{buildingcode,jdbcType=VARCHAR},
+      </if>
+      <if test="totalacreage != null">
+        #{totalacreage,jdbcType=DOUBLE},
+      </if>
+      <if test="airconditionacreage != null">
+        #{airconditionacreage,jdbcType=DOUBLE},
+      </if>
+      <if test="warmacreage != null">
+        #{warmacreage,jdbcType=DOUBLE},
+      </if>
+      <if test="aircondtitiontype != null">
+        #{aircondtitiontype,jdbcType=VARCHAR},
+      </if>
+      <if test="warmtype != null">
+        #{warmtype,jdbcType=VARCHAR},
+      </if>
+      <if test="sizeparams != null">
+        #{sizeparams,jdbcType=VARCHAR},
+      </if>
+      <if test="structuretype != null">
+        #{structuretype,jdbcType=VARCHAR},
+      </if>
+      <if test="outwallmaterialtype != null">
+        #{outwallmaterialtype,jdbcType=VARCHAR},
+      </if>
+      <if test="outwallwarmtype != null">
+        #{outwallwarmtype,jdbcType=VARCHAR},
+      </if>
+      <if test="outwindowtype != null">
+        #{outwindowtype,jdbcType=VARCHAR},
+      </if>
+      <if test="glasswindowtype != null">
+        #{glasswindowtype,jdbcType=VARCHAR},
+      </if>
+      <if test="windowframematerialtype != null">
+        #{windowframematerialtype,jdbcType=VARCHAR},
+      </if>
+      <if test="electircprice != null">
+        #{electircprice,jdbcType=DOUBLE},
+      </if>
+      <if test="waterprice != null">
+        #{waterprice,jdbcType=DOUBLE},
+      </if>
+      <if test="gasprice != null">
+        #{gasprice,jdbcType=DOUBLE},
+      </if>
+      <if test="warmprice != null">
+        #{warmprice,jdbcType=DOUBLE},
+      </if>
+      <if test="direction != null">
+        #{direction,jdbcType=VARCHAR},
+      </if>
+      <if test="scalewindwall != null">
+        #{scalewindwall,jdbcType=VARCHAR},
+      </if>
+      <if test="scalelengthwidth != null">
+        #{scalelengthwidth,jdbcType=VARCHAR},
+      </if>
+      <if test="extend1 != null">
+        #{extend1,jdbcType=VARCHAR},
+      </if>
+      <if test="extend2 != null">
+        #{extend2,jdbcType=VARCHAR},
+      </if>
+      <if test="extend3 != null">
+        #{extend3,jdbcType=VARCHAR},
+      </if>
+      <if test="infocreateuserid != null">
+        #{infocreateuserid,jdbcType=INTEGER},
+      </if>
+      <if test="infocreatetime != null">
+        #{infocreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=BIT},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="picture != null">
+        #{picture,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.loongray.ecms.mybatis.pojo.CfgBuildingWithBLOBs">
+    update cfgbuilding
+    <set>
+      <if test="groupid != null">
+        GroupId = #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="vpoint != null">
+        VPoint = #{vpoint,jdbcType=DOUBLE},
+      </if>
+      <if test="hpoint != null">
+        HPoint = #{hpoint,jdbcType=DOUBLE},
+      </if>
+      <if test="buildingname != null">
+        BuildingName = #{buildingname,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null">
+        Year = #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="floornum != null">
+        FloorNum = #{floornum,jdbcType=INTEGER},
+      </if>
+      <if test="buildingcategorycode != null">
+        BuildingCategoryCode = #{buildingcategorycode,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingcode != null">
+        BuildingCode = #{buildingcode,jdbcType=VARCHAR},
+      </if>
+      <if test="totalacreage != null">
+        TotalAcreage = #{totalacreage,jdbcType=DOUBLE},
+      </if>
+      <if test="airconditionacreage != null">
+        AirConditionAcreage = #{airconditionacreage,jdbcType=DOUBLE},
+      </if>
+      <if test="warmacreage != null">
+        WarmAcreage = #{warmacreage,jdbcType=DOUBLE},
+      </if>
+      <if test="aircondtitiontype != null">
+        AirCondtitionType = #{aircondtitiontype,jdbcType=VARCHAR},
+      </if>
+      <if test="warmtype != null">
+        WarmType = #{warmtype,jdbcType=VARCHAR},
+      </if>
+      <if test="sizeparams != null">
+        SizeParams = #{sizeparams,jdbcType=VARCHAR},
+      </if>
+      <if test="structuretype != null">
+        StructureType = #{structuretype,jdbcType=VARCHAR},
+      </if>
+      <if test="outwallmaterialtype != null">
+        OutWallMaterialType = #{outwallmaterialtype,jdbcType=VARCHAR},
+      </if>
+      <if test="outwallwarmtype != null">
+        OutWallWarmType = #{outwallwarmtype,jdbcType=VARCHAR},
+      </if>
+      <if test="outwindowtype != null">
+        OutWindowType = #{outwindowtype,jdbcType=VARCHAR},
+      </if>
+      <if test="glasswindowtype != null">
+        GlassWindowType = #{glasswindowtype,jdbcType=VARCHAR},
+      </if>
+      <if test="windowframematerialtype != null">
+        WindowFrameMaterialType = #{windowframematerialtype,jdbcType=VARCHAR},
+      </if>
+      <if test="electircprice != null">
+        ElectircPrice = #{electircprice,jdbcType=DOUBLE},
+      </if>
+      <if test="waterprice != null">
+        WaterPrice = #{waterprice,jdbcType=DOUBLE},
+      </if>
+      <if test="gasprice != null">
+        GasPrice = #{gasprice,jdbcType=DOUBLE},
+      </if>
+      <if test="warmprice != null">
+        WarmPrice = #{warmprice,jdbcType=DOUBLE},
+      </if>
+      <if test="direction != null">
+        Direction = #{direction,jdbcType=VARCHAR},
+      </if>
+      <if test="scalewindwall != null">
+        ScaleWindWall = #{scalewindwall,jdbcType=VARCHAR},
+      </if>
+      <if test="scalelengthwidth != null">
+        ScaleLengthWidth = #{scalelengthwidth,jdbcType=VARCHAR},
+      </if>
+      <if test="extend1 != null">
+        Extend1 = #{extend1,jdbcType=VARCHAR},
+      </if>
+      <if test="extend2 != null">
+        Extend2 = #{extend2,jdbcType=VARCHAR},
+      </if>
+      <if test="extend3 != null">
+        Extend3 = #{extend3,jdbcType=VARCHAR},
+      </if>
+      <if test="infocreateuserid != null">
+        InfoCreateUserId = #{infocreateuserid,jdbcType=INTEGER},
+      </if>
+      <if test="infocreatetime != null">
+        InfoCreateTime = #{infocreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        Deleted = #{deleted,jdbcType=BIT},
+      </if>
+      <if test="address != null">
+        Address = #{address,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="description != null">
+        Description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="picture != null">
+        Picture = #{picture,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where BuildingId = #{buildingid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.loongray.ecms.mybatis.pojo.CfgBuildingWithBLOBs">
+    update cfgbuilding
+    set GroupId = #{groupid,jdbcType=INTEGER},
+      VPoint = #{vpoint,jdbcType=DOUBLE},
+      HPoint = #{hpoint,jdbcType=DOUBLE},
+      BuildingName = #{buildingname,jdbcType=VARCHAR},
+      Year = #{year,jdbcType=VARCHAR},
+      FloorNum = #{floornum,jdbcType=INTEGER},
+      BuildingCategoryCode = #{buildingcategorycode,jdbcType=VARCHAR},
+      BuildingCode = #{buildingcode,jdbcType=VARCHAR},
+      TotalAcreage = #{totalacreage,jdbcType=DOUBLE},
+      AirConditionAcreage = #{airconditionacreage,jdbcType=DOUBLE},
+      WarmAcreage = #{warmacreage,jdbcType=DOUBLE},
+      AirCondtitionType = #{aircondtitiontype,jdbcType=VARCHAR},
+      WarmType = #{warmtype,jdbcType=VARCHAR},
+      SizeParams = #{sizeparams,jdbcType=VARCHAR},
+      StructureType = #{structuretype,jdbcType=VARCHAR},
+      OutWallMaterialType = #{outwallmaterialtype,jdbcType=VARCHAR},
+      OutWallWarmType = #{outwallwarmtype,jdbcType=VARCHAR},
+      OutWindowType = #{outwindowtype,jdbcType=VARCHAR},
+      GlassWindowType = #{glasswindowtype,jdbcType=VARCHAR},
+      WindowFrameMaterialType = #{windowframematerialtype,jdbcType=VARCHAR},
+      ElectircPrice = #{electircprice,jdbcType=DOUBLE},
+      WaterPrice = #{waterprice,jdbcType=DOUBLE},
+      GasPrice = #{gasprice,jdbcType=DOUBLE},
+      WarmPrice = #{warmprice,jdbcType=DOUBLE},
+      Direction = #{direction,jdbcType=VARCHAR},
+      ScaleWindWall = #{scalewindwall,jdbcType=VARCHAR},
+      ScaleLengthWidth = #{scalelengthwidth,jdbcType=VARCHAR},
+      Extend1 = #{extend1,jdbcType=VARCHAR},
+      Extend2 = #{extend2,jdbcType=VARCHAR},
+      Extend3 = #{extend3,jdbcType=VARCHAR},
+      InfoCreateUserId = #{infocreateuserid,jdbcType=INTEGER},
+      InfoCreateTime = #{infocreatetime,jdbcType=TIMESTAMP},
+      Deleted = #{deleted,jdbcType=BIT},
+      Address = #{address,jdbcType=LONGVARCHAR},
+      Description = #{description,jdbcType=LONGVARCHAR},
+      Picture = #{picture,jdbcType=LONGVARBINARY}
+    where BuildingId = #{buildingid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.loongray.ecms.mybatis.pojo.CfgBuilding">
+    update cfgbuilding
+    set GroupId = #{groupid,jdbcType=INTEGER},
+      VPoint = #{vpoint,jdbcType=DOUBLE},
+      HPoint = #{hpoint,jdbcType=DOUBLE},
+      BuildingName = #{buildingname,jdbcType=VARCHAR},
+      Year = #{year,jdbcType=VARCHAR},
+      FloorNum = #{floornum,jdbcType=INTEGER},
+      BuildingCategoryCode = #{buildingcategorycode,jdbcType=VARCHAR},
+      BuildingCode = #{buildingcode,jdbcType=VARCHAR},
+      TotalAcreage = #{totalacreage,jdbcType=DOUBLE},
+      AirConditionAcreage = #{airconditionacreage,jdbcType=DOUBLE},
+      WarmAcreage = #{warmacreage,jdbcType=DOUBLE},
+      AirCondtitionType = #{aircondtitiontype,jdbcType=VARCHAR},
+      WarmType = #{warmtype,jdbcType=VARCHAR},
+      SizeParams = #{sizeparams,jdbcType=VARCHAR},
+      StructureType = #{structuretype,jdbcType=VARCHAR},
+      OutWallMaterialType = #{outwallmaterialtype,jdbcType=VARCHAR},
+      OutWallWarmType = #{outwallwarmtype,jdbcType=VARCHAR},
+      OutWindowType = #{outwindowtype,jdbcType=VARCHAR},
+      GlassWindowType = #{glasswindowtype,jdbcType=VARCHAR},
+      WindowFrameMaterialType = #{windowframematerialtype,jdbcType=VARCHAR},
+      ElectircPrice = #{electircprice,jdbcType=DOUBLE},
+      WaterPrice = #{waterprice,jdbcType=DOUBLE},
+      GasPrice = #{gasprice,jdbcType=DOUBLE},
+      WarmPrice = #{warmprice,jdbcType=DOUBLE},
+      Direction = #{direction,jdbcType=VARCHAR},
+      ScaleWindWall = #{scalewindwall,jdbcType=VARCHAR},
+      ScaleLengthWidth = #{scalelengthwidth,jdbcType=VARCHAR},
+      Extend1 = #{extend1,jdbcType=VARCHAR},
+      Extend2 = #{extend2,jdbcType=VARCHAR},
+      Extend3 = #{extend3,jdbcType=VARCHAR},
+      InfoCreateUserId = #{infocreateuserid,jdbcType=INTEGER},
+      InfoCreateTime = #{infocreatetime,jdbcType=TIMESTAMP},
+      Deleted = #{deleted,jdbcType=BIT}
+    where BuildingId = #{buildingid,jdbcType=INTEGER}
+  </update>
+</mapper>

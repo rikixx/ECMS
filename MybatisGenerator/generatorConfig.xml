@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration  
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd"> 
+<generatorConfiguration>
+    <classPathEntry
+        location="D:\J2EE\eclipse\Maven\mysql\mysql-connector-java\5.1.40\mysql-connector-java-5.1.40.jar" />
+    <context id="context1">
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property
+                name="suppressAllComments"
+                value="true" />
+        </commentGenerator>
+        <jdbcConnection
+            connectionURL="jdbc:mysql://localhost:3306/ecs"
+            driverClass="com.mysql.jdbc.Driver"
+            password="root"
+            userId="root" />
+        <javaTypeResolver>
+            <property
+                name="forceBigDecimals"
+                value="false" />
+        </javaTypeResolver>
+        <javaModelGenerator
+            targetPackage="com.loongray.ecms.mybatis.pojo"
+            targetProject="ecms">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property
+                name="enableSubPackages"
+                value="false" />
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property
+                name="trimStrings"
+                value="true" />
+        </javaModelGenerator>
+        <sqlMapGenerator
+            targetPackage="com.loongray.ecms.mybatis.mapper"
+            targetProject="ecms">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property
+                name="enableSubPackages"
+                value="false" />
+        </sqlMapGenerator>
+        <javaClientGenerator
+            targetPackage="com.loongray.ecms.mybatis.dao"
+            targetProject="ecms"
+            type="XMLMAPPER">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property
+                name="enableSubPackages"
+                value="false" />
+        </javaClientGenerator>
+        <table
+            tableName="sysdictbuildingtype"
+            domainObjectName="SysDictBuildingType"
+            enableCountByExample="false"
+            enableUpdateByExample="false"
+            enableDeleteByExample="false"
+            enableSelectByExample="false"
+            selectByExampleQueryId="false" />
+        <table
+            tableName="sysdictcity"
+            domainObjectName="SysDictCity"
+            enableCountByExample="false"
+            enableUpdateByExample="false"
+            enableDeleteByExample="false"
+            enableSelectByExample="false"
+            selectByExampleQueryId="false" />
+        <table
+            tableName="cfgbuilding"
+            domainObjectName="CfgBuilding"
+            enableCountByExample="false"
+            enableUpdateByExample="false"
+            enableDeleteByExample="false"
+            enableSelectByExample="false"
+            selectByExampleQueryId="false" />
+        <table
+            tableName="cfgbuildinggroup"
+            domainObjectName="CfgBuildingGroup"
+            enableCountByExample="false"
+            enableUpdateByExample="false"
+            enableDeleteByExample="false"
+            enableSelectByExample="false"
+            selectByExampleQueryId="false" />
+        <table
+            tableName="cfgcommand"
+            domainObjectName="CfgCommand"
+            enableCountByExample="false"
+            enableUpdateByExample="false"
+            enableDeleteByExample="false"
+            enableSelectByExample="false"
+            selectByExampleQueryId="false" />
+        <table
+            tableName="cfgroom"
+            domainObjectName="CfgCompany"
+            enableCountByExample="false"
+            enableUpdateByExample="false"
+            enableDeleteByExample="false"
+            enableSelectByExample="false"
+            selectByExampleQueryId="false" />
+        <table
+            tableName="cfgequipment"
+            domainObjectName="CfgEquipment"
+            enableCountByExample="false"
+            enableUpdateByExample="false"
+            enableDeleteByExample="false"
+            enableSelectByExample="false"
+            selectByExampleQueryId="false" />
+        <table
+            tableName="cfgevent"
+            domainObjectName="CfgEvent"
+            enableCountByExample="false"
+            enableUpdateByExample="false"
+            enableDeleteByExample="false"
+            enableSelectByExample="false"
+            selectByExampleQueryId="false" />
+        <table
+            tableName="cfgmachine"
+            domainObjectName="CfgMachine"
+            enableCountByExample="false"
+            enableUpdateByExample="false"
+            enableDeleteByExample="false"
+            enableSelectByExample="false"
+            selectByExampleQueryId="false" />
+        <table
+            tableName="cfgmeasurepoint"
+            domainObjectName="CfgMeasurePoint"
+            enableCountByExample="false"
+            enableUpdateByExample="false"
+            enableDeleteByExample="false"
+            enableSelectByExample="false"
+            selectByExampleQueryId="false" />
+        <table
+            tableName="cfgproject"
+            domainObjectName="CfgProject"
+            enableCountByExample="false"
+            enableUpdateByExample="false"
+            enableDeleteByExample="false"
+            enableSelectByExample="false"
+            selectByExampleQueryId="false" />
+        <table
+            tableName="cfgrolemap"
+            domainObjectName="CfgRoleMap"
+            enableCountByExample="false"
+            enableUpdateByExample="false"
+            enableDeleteByExample="false"
+            enableSelectByExample="false"
+            selectByExampleQueryId="false" />
+        <table
+            tableName="cfgsignal"
+            domainObjectName="CfgSignal"
+            enableCountByExample="false"
+            enableUpdateByExample="false"
+            enableDeleteByExample="false"
+            enableSelectByExample="false"
+            selectByExampleQueryId="false" />
+        <table
+            tableName="cfguser"
+            domainObjectName="CfgUser"
+            enableCountByExample="false"
+            enableUpdateByExample="false"
+            enableDeleteByExample="false"
+            enableSelectByExample="false"
+            selectByExampleQueryId="false" />
+        <table
+            tableName="datadailysummation"
+            domainObjectName="DataDailySummation"
+            enableCountByExample="false"
+            enableUpdateByExample="false"
+            enableDeleteByExample="false"
+            enableSelectByExample="false"
+            selectByExampleQueryId="false" />
+        <table
+            tableName="sysdictitem"
+            domainObjectName="SysDictItem"
+            enableCountByExample="false"
+            enableUpdateByExample="false"
+            enableDeleteByExample="false"
+            enableSelectByExample="false"
+            selectByExampleQueryId="false" />
+        <table
+            tableName="sysdicttype"
+            domainObjectName="SysDictType"
+            enableCountByExample="false"
+            enableUpdateByExample="false"
+            enableDeleteByExample="false"
+            enableSelectByExample="false"
+            selectByExampleQueryId="false" />
+        <table
+            tableName="sysdictenergycategory"
+            domainObjectName="SysDictEnergyCategory"
+            enableCountByExample="false"
+            enableUpdateByExample="false"
+            enableDeleteByExample="false"
+            enableSelectByExample="false"
+            selectByExampleQueryId="false" />
+        <table
+            tableName="sysdictenergyitem"
+            domainObjectName="SysDictEnergyItem"
+            enableCountByExample="false"
+            enableUpdateByExample="false"
+            enableDeleteByExample="false"
+            enableSelectByExample="false"
+            selectByExampleQueryId="false" />
+        <table
+            tableName="sysdictenergyitemlvone"
+            domainObjectName="SysDictEnergyItemLvOne"
+            enableCountByExample="false"
+            enableUpdateByExample="false"
+            enableDeleteByExample="false"
+            enableSelectByExample="false"
+            selectByExampleQueryId="false" />
+        <table
+            tableName="sysdictenergyitemlvtwo"
+            domainObjectName="SysDictEnergyItemLvTwo"
+            enableCountByExample="false"
+            enableUpdateByExample="false"
+            enableDeleteByExample="false"
+            enableSelectByExample="false"
+            selectByExampleQueryId="false" />
+        <table
+            tableName="datahistory"
+            domainObjectName="DataHistory"
+            enableCountByExample="false"
+            enableUpdateByExample="false"
+            enableDeleteByExample="false"
+            enableSelectByExample="false"
+            selectByExampleQueryId="false" />
+        <table
+            tableName="sysdictprovince"
+            domainObjectName="SysDictProvince"
+            enableCountByExample="false"
+            enableUpdateByExample="false"
+            enableDeleteByExample="false"
+            enableSelectByExample="false"
+            selectByExampleQueryId="false" />
+    </context>
+</generatorConfiguration>

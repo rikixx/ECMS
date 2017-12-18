@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loongray.ecms.mybatis.dao.CfgSignalMapper">
+  <resultMap id="BaseResultMap" type="com.loongray.ecms.mybatis.pojo.CfgSignal">
+    <id column="SignalId" jdbcType="INTEGER" property="signalid" />
+    <result column="ProjectId" jdbcType="INTEGER" property="projectid" />
+    <result column="GroupId" jdbcType="INTEGER" property="groupid" />
+    <result column="BuildingId" jdbcType="INTEGER" property="buildingid" />
+    <result column="PointId" jdbcType="INTEGER" property="pointid" />
+    <result column="EquipmentId" jdbcType="INTEGER" property="equipmentid" />
+    <result column="SignalGroupId" jdbcType="INTEGER" property="signalgroupid" />
+    <result column="EnergyCategoryId" jdbcType="INTEGER" property="energycategoryid" />
+    <result column="SignalName" jdbcType="VARCHAR" property="signalname" />
+    <result column="SignalCategoryId" jdbcType="INTEGER" property="signalcategoryid" />
+    <result column="EnergyItemId" jdbcType="INTEGER" property="energyitemid" />
+    <result column="EnergyItemLvOneId" jdbcType="INTEGER" property="energyitemlvoneid" />
+    <result column="EnergyItemLvTwoId" jdbcType="INTEGER" property="energyitemlvtwoid" />
+    <result column="TagName" jdbcType="VARCHAR" property="tagname" />
+    <result column="IsSumData" jdbcType="BIT" property="issumdata" />
+    <result column="BuildingSummary" jdbcType="BIT" property="buildingsummary" />
+    <result column="CompanySummary" jdbcType="BIT" property="companysummary" />
+    <result column="CategorySummary" jdbcType="BIT" property="categorysummary" />
+    <result column="ItemSummary" jdbcType="BIT" property="itemsummary" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.loongray.ecms.mybatis.pojo.CfgSignal">
+    <result column="Description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SignalId, ProjectId, GroupId, BuildingId, PointId, EquipmentId, SignalGroupId, EnergyCategoryId, 
+    SignalName, SignalCategoryId, EnergyItemId, EnergyItemLvOneId, EnergyItemLvTwoId, 
+    TagName, IsSumData, BuildingSummary, CompanySummary, CategorySummary, ItemSummary
+  </sql>
+  <sql id="Blob_Column_List">
+    Description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cfgsignal
+    where SignalId = #{signalid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cfgsignal
+    where SignalId = #{signalid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.loongray.ecms.mybatis.pojo.CfgSignal">
+    insert into cfgsignal (SignalId, ProjectId, GroupId, 
+      BuildingId, PointId, EquipmentId, 
+      SignalGroupId, EnergyCategoryId, SignalName, 
+      SignalCategoryId, EnergyItemId, EnergyItemLvOneId, 
+      EnergyItemLvTwoId, TagName, IsSumData, 
+      BuildingSummary, CompanySummary, CategorySummary, 
+      ItemSummary, Description)
+    values (#{signalid,jdbcType=INTEGER}, #{projectid,jdbcType=INTEGER}, #{groupid,jdbcType=INTEGER}, 
+      #{buildingid,jdbcType=INTEGER}, #{pointid,jdbcType=INTEGER}, #{equipmentid,jdbcType=INTEGER}, 
+      #{signalgroupid,jdbcType=INTEGER}, #{energycategoryid,jdbcType=INTEGER}, #{signalname,jdbcType=VARCHAR}, 
+      #{signalcategoryid,jdbcType=INTEGER}, #{energyitemid,jdbcType=INTEGER}, #{energyitemlvoneid,jdbcType=INTEGER}, 
+      #{energyitemlvtwoid,jdbcType=INTEGER}, #{tagname,jdbcType=VARCHAR}, #{issumdata,jdbcType=BIT}, 
+      #{buildingsummary,jdbcType=BIT}, #{companysummary,jdbcType=BIT}, #{categorysummary,jdbcType=BIT}, 
+      #{itemsummary,jdbcType=BIT}, #{description,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.loongray.ecms.mybatis.pojo.CfgSignal">
+    insert into cfgsignal
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="signalid != null">
+        SignalId,
+      </if>
+      <if test="projectid != null">
+        ProjectId,
+      </if>
+      <if test="groupid != null">
+        GroupId,
+      </if>
+      <if test="buildingid != null">
+        BuildingId,
+      </if>
+      <if test="pointid != null">
+        PointId,
+      </if>
+      <if test="equipmentid != null">
+        EquipmentId,
+      </if>
+      <if test="signalgroupid != null">
+        SignalGroupId,
+      </if>
+      <if test="energycategoryid != null">
+        EnergyCategoryId,
+      </if>
+      <if test="signalname != null">
+        SignalName,
+      </if>
+      <if test="signalcategoryid != null">
+        SignalCategoryId,
+      </if>
+      <if test="energyitemid != null">
+        EnergyItemId,
+      </if>
+      <if test="energyitemlvoneid != null">
+        EnergyItemLvOneId,
+      </if>
+      <if test="energyitemlvtwoid != null">
+        EnergyItemLvTwoId,
+      </if>
+      <if test="tagname != null">
+        TagName,
+      </if>
+      <if test="issumdata != null">
+        IsSumData,
+      </if>
+      <if test="buildingsummary != null">
+        BuildingSummary,
+      </if>
+      <if test="companysummary != null">
+        CompanySummary,
+      </if>
+      <if test="categorysummary != null">
+        CategorySummary,
+      </if>
+      <if test="itemsummary != null">
+        ItemSummary,
+      </if>
+      <if test="description != null">
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="signalid != null">
+        #{signalid,jdbcType=INTEGER},
+      </if>
+      <if test="projectid != null">
+        #{projectid,jdbcType=INTEGER},
+      </if>
+      <if test="groupid != null">
+        #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="buildingid != null">
+        #{buildingid,jdbcType=INTEGER},
+      </if>
+      <if test="pointid != null">
+        #{pointid,jdbcType=INTEGER},
+      </if>
+      <if test="equipmentid != null">
+        #{equipmentid,jdbcType=INTEGER},
+      </if>
+      <if test="signalgroupid != null">
+        #{signalgroupid,jdbcType=INTEGER},
+      </if>
+      <if test="energycategoryid != null">
+        #{energycategoryid,jdbcType=INTEGER},
+      </if>
+      <if test="signalname != null">
+        #{signalname,jdbcType=VARCHAR},
+      </if>
+      <if test="signalcategoryid != null">
+        #{signalcategoryid,jdbcType=INTEGER},
+      </if>
+      <if test="energyitemid != null">
+        #{energyitemid,jdbcType=INTEGER},
+      </if>
+      <if test="energyitemlvoneid != null">
+        #{energyitemlvoneid,jdbcType=INTEGER},
+      </if>
+      <if test="energyitemlvtwoid != null">
+        #{energyitemlvtwoid,jdbcType=INTEGER},
+      </if>
+      <if test="tagname != null">
+        #{tagname,jdbcType=VARCHAR},
+      </if>
+      <if test="issumdata != null">
+        #{issumdata,jdbcType=BIT},
+      </if>
+      <if test="buildingsummary != null">
+        #{buildingsummary,jdbcType=BIT},
+      </if>
+      <if test="companysummary != null">
+        #{companysummary,jdbcType=BIT},
+      </if>
+      <if test="categorysummary != null">
+        #{categorysummary,jdbcType=BIT},
+      </if>
+      <if test="itemsummary != null">
+        #{itemsummary,jdbcType=BIT},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.loongray.ecms.mybatis.pojo.CfgSignal">
+    update cfgsignal
+    <set>
+      <if test="projectid != null">
+        ProjectId = #{projectid,jdbcType=INTEGER},
+      </if>
+      <if test="groupid != null">
+        GroupId = #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="buildingid != null">
+        BuildingId = #{buildingid,jdbcType=INTEGER},
+      </if>
+      <if test="pointid != null">
+        PointId = #{pointid,jdbcType=INTEGER},
+      </if>
+      <if test="equipmentid != null">
+        EquipmentId = #{equipmentid,jdbcType=INTEGER},
+      </if>
+      <if test="signalgroupid != null">
+        SignalGroupId = #{signalgroupid,jdbcType=INTEGER},
+      </if>
+      <if test="energycategoryid != null">
+        EnergyCategoryId = #{energycategoryid,jdbcType=INTEGER},
+      </if>
+      <if test="signalname != null">
+        SignalName = #{signalname,jdbcType=VARCHAR},
+      </if>
+      <if test="signalcategoryid != null">
+        SignalCategoryId = #{signalcategoryid,jdbcType=INTEGER},
+      </if>
+      <if test="energyitemid != null">
+        EnergyItemId = #{energyitemid,jdbcType=INTEGER},
+      </if>
+      <if test="energyitemlvoneid != null">
+        EnergyItemLvOneId = #{energyitemlvoneid,jdbcType=INTEGER},
+      </if>
+      <if test="energyitemlvtwoid != null">
+        EnergyItemLvTwoId = #{energyitemlvtwoid,jdbcType=INTEGER},
+      </if>
+      <if test="tagname != null">
+        TagName = #{tagname,jdbcType=VARCHAR},
+      </if>
+      <if test="issumdata != null">
+        IsSumData = #{issumdata,jdbcType=BIT},
+      </if>
+      <if test="buildingsummary != null">
+        BuildingSummary = #{buildingsummary,jdbcType=BIT},
+      </if>
+      <if test="companysummary != null">
+        CompanySummary = #{companysummary,jdbcType=BIT},
+      </if>
+      <if test="categorysummary != null">
+        CategorySummary = #{categorysummary,jdbcType=BIT},
+      </if>
+      <if test="itemsummary != null">
+        ItemSummary = #{itemsummary,jdbcType=BIT},
+      </if>
+      <if test="description != null">
+        Description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where SignalId = #{signalid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.loongray.ecms.mybatis.pojo.CfgSignal">
+    update cfgsignal
+    set ProjectId = #{projectid,jdbcType=INTEGER},
+      GroupId = #{groupid,jdbcType=INTEGER},
+      BuildingId = #{buildingid,jdbcType=INTEGER},
+      PointId = #{pointid,jdbcType=INTEGER},
+      EquipmentId = #{equipmentid,jdbcType=INTEGER},
+      SignalGroupId = #{signalgroupid,jdbcType=INTEGER},
+      EnergyCategoryId = #{energycategoryid,jdbcType=INTEGER},
+      SignalName = #{signalname,jdbcType=VARCHAR},
+      SignalCategoryId = #{signalcategoryid,jdbcType=INTEGER},
+      EnergyItemId = #{energyitemid,jdbcType=INTEGER},
+      EnergyItemLvOneId = #{energyitemlvoneid,jdbcType=INTEGER},
+      EnergyItemLvTwoId = #{energyitemlvtwoid,jdbcType=INTEGER},
+      TagName = #{tagname,jdbcType=VARCHAR},
+      IsSumData = #{issumdata,jdbcType=BIT},
+      BuildingSummary = #{buildingsummary,jdbcType=BIT},
+      CompanySummary = #{companysummary,jdbcType=BIT},
+      CategorySummary = #{categorysummary,jdbcType=BIT},
+      ItemSummary = #{itemsummary,jdbcType=BIT},
+      Description = #{description,jdbcType=LONGVARCHAR}
+    where SignalId = #{signalid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.loongray.ecms.mybatis.pojo.CfgSignal">
+    update cfgsignal
+    set ProjectId = #{projectid,jdbcType=INTEGER},
+      GroupId = #{groupid,jdbcType=INTEGER},
+      BuildingId = #{buildingid,jdbcType=INTEGER},
+      PointId = #{pointid,jdbcType=INTEGER},
+      EquipmentId = #{equipmentid,jdbcType=INTEGER},
+      SignalGroupId = #{signalgroupid,jdbcType=INTEGER},
+      EnergyCategoryId = #{energycategoryid,jdbcType=INTEGER},
+      SignalName = #{signalname,jdbcType=VARCHAR},
+      SignalCategoryId = #{signalcategoryid,jdbcType=INTEGER},
+      EnergyItemId = #{energyitemid,jdbcType=INTEGER},
+      EnergyItemLvOneId = #{energyitemlvoneid,jdbcType=INTEGER},
+      EnergyItemLvTwoId = #{energyitemlvtwoid,jdbcType=INTEGER},
+      TagName = #{tagname,jdbcType=VARCHAR},
+      IsSumData = #{issumdata,jdbcType=BIT},
+      BuildingSummary = #{buildingsummary,jdbcType=BIT},
+      CompanySummary = #{companysummary,jdbcType=BIT},
+      CategorySummary = #{categorysummary,jdbcType=BIT},
+      ItemSummary = #{itemsummary,jdbcType=BIT}
+    where SignalId = #{signalid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loongray.ecms.mybatis.dao.SysDictTypeMapper">
+  <resultMap id="BaseResultMap" type="com.loongray.ecms.mybatis.pojo.SysDictType">
+    <id column="TypeId" jdbcType="INTEGER" property="typeid" />
+    <result column="TypeValue" jdbcType="VARCHAR" property="typevalue" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.loongray.ecms.mybatis.pojo.SysDictType">
+    <result column="Description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    TypeId, TypeValue
+  </sql>
+  <sql id="Blob_Column_List">
+    Description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sysdicttype
+    where TypeId = #{typeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sysdicttype
+    where TypeId = #{typeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.loongray.ecms.mybatis.pojo.SysDictType">
+    insert into sysdicttype (TypeId, TypeValue, Description
+      )
+    values (#{typeid,jdbcType=INTEGER}, #{typevalue,jdbcType=VARCHAR}, #{description,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.loongray.ecms.mybatis.pojo.SysDictType">
+    insert into sysdicttype
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="typeid != null">
+        TypeId,
+      </if>
+      <if test="typevalue != null">
+        TypeValue,
+      </if>
+      <if test="description != null">
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="typeid != null">
+        #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="typevalue != null">
+        #{typevalue,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.loongray.ecms.mybatis.pojo.SysDictType">
+    update sysdicttype
+    <set>
+      <if test="typevalue != null">
+        TypeValue = #{typevalue,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        Description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where TypeId = #{typeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.loongray.ecms.mybatis.pojo.SysDictType">
+    update sysdicttype
+    set TypeValue = #{typevalue,jdbcType=VARCHAR},
+      Description = #{description,jdbcType=LONGVARCHAR}
+    where TypeId = #{typeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.loongray.ecms.mybatis.pojo.SysDictType">
+    update sysdicttype
+    set TypeValue = #{typevalue,jdbcType=VARCHAR}
+    where TypeId = #{typeid,jdbcType=INTEGER}
+  </update>
+</mapper>

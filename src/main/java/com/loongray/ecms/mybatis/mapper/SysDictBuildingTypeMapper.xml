@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loongray.ecms.mybatis.dao.SysDictBuildingTypeMapper">
+  <resultMap id="BaseResultMap" type="com.loongray.ecms.mybatis.pojo.SysDictBuildingType">
+    <id column="UniqueId" jdbcType="INTEGER" property="uniqueid" />
+    <result column="BuildingTypeCode" jdbcType="VARCHAR" property="buildingtypecode" />
+    <result column="BuildingTypeName" jdbcType="VARCHAR" property="buildingtypename" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.loongray.ecms.mybatis.pojo.SysDictBuildingType">
+    <result column="Description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    UniqueId, BuildingTypeCode, BuildingTypeName
+  </sql>
+  <sql id="Blob_Column_List">
+    Description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sysdictbuildingtype
+    where UniqueId = #{uniqueid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sysdictbuildingtype
+    where UniqueId = #{uniqueid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.loongray.ecms.mybatis.pojo.SysDictBuildingType">
+    insert into sysdictbuildingtype (UniqueId, BuildingTypeCode, BuildingTypeName, 
+      Description)
+    values (#{uniqueid,jdbcType=INTEGER}, #{buildingtypecode,jdbcType=VARCHAR}, #{buildingtypename,jdbcType=VARCHAR}, 
+      #{description,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.loongray.ecms.mybatis.pojo.SysDictBuildingType">
+    insert into sysdictbuildingtype
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uniqueid != null">
+        UniqueId,
+      </if>
+      <if test="buildingtypecode != null">
+        BuildingTypeCode,
+      </if>
+      <if test="buildingtypename != null">
+        BuildingTypeName,
+      </if>
+      <if test="description != null">
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uniqueid != null">
+        #{uniqueid,jdbcType=INTEGER},
+      </if>
+      <if test="buildingtypecode != null">
+        #{buildingtypecode,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingtypename != null">
+        #{buildingtypename,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.loongray.ecms.mybatis.pojo.SysDictBuildingType">
+    update sysdictbuildingtype
+    <set>
+      <if test="buildingtypecode != null">
+        BuildingTypeCode = #{buildingtypecode,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingtypename != null">
+        BuildingTypeName = #{buildingtypename,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        Description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where UniqueId = #{uniqueid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.loongray.ecms.mybatis.pojo.SysDictBuildingType">
+    update sysdictbuildingtype
+    set BuildingTypeCode = #{buildingtypecode,jdbcType=VARCHAR},
+      BuildingTypeName = #{buildingtypename,jdbcType=VARCHAR},
+      Description = #{description,jdbcType=LONGVARCHAR}
+    where UniqueId = #{uniqueid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.loongray.ecms.mybatis.pojo.SysDictBuildingType">
+    update sysdictbuildingtype
+    set BuildingTypeCode = #{buildingtypecode,jdbcType=VARCHAR},
+      BuildingTypeName = #{buildingtypename,jdbcType=VARCHAR}
+    where UniqueId = #{uniqueid,jdbcType=INTEGER}
+  </update>
+</mapper>

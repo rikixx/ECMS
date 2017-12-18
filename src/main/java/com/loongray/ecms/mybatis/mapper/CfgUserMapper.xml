@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loongray.ecms.mybatis.dao.CfgUserMapper">
+  <resultMap id="BaseResultMap" type="com.loongray.ecms.mybatis.pojo.CfgUser">
+    <id column="UserId" jdbcType="INTEGER" property="userid" />
+    <result column="UserRole" jdbcType="INTEGER" property="userrole" />
+    <result column="UserName" jdbcType="VARCHAR" property="username" />
+    <result column="LoginId" jdbcType="VARCHAR" property="loginid" />
+    <result column="Password" jdbcType="VARCHAR" property="password" />
+    <result column="EmailAddress" jdbcType="VARCHAR" property="emailaddress" />
+    <result column="SignQuestion" jdbcType="VARCHAR" property="signquestion" />
+    <result column="SignAnswer" jdbcType="VARCHAR" property="signanswer" />
+    <result column="RetryCount" jdbcType="INTEGER" property="retrycount" />
+    <result column="IsLocked" jdbcType="BIT" property="islocked" />
+    <result column="LastLoginTime" jdbcType="TIMESTAMP" property="lastlogintime" />
+    <result column="ValidTime" jdbcType="TIMESTAMP" property="validtime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.loongray.ecms.mybatis.pojo.CfgUser">
+    <result column="Description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    UserId, UserRole, UserName, LoginId, Password, EmailAddress, SignQuestion, SignAnswer, 
+    RetryCount, IsLocked, LastLoginTime, ValidTime
+  </sql>
+  <sql id="Blob_Column_List">
+    Description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cfguser
+    where UserId = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cfguser
+    where UserId = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.loongray.ecms.mybatis.pojo.CfgUser">
+    insert into cfguser (UserId, UserRole, UserName, 
+      LoginId, Password, EmailAddress, 
+      SignQuestion, SignAnswer, RetryCount, 
+      IsLocked, LastLoginTime, ValidTime, 
+      Description)
+    values (#{userid,jdbcType=INTEGER}, #{userrole,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+      #{loginid,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{emailaddress,jdbcType=VARCHAR}, 
+      #{signquestion,jdbcType=VARCHAR}, #{signanswer,jdbcType=VARCHAR}, #{retrycount,jdbcType=INTEGER}, 
+      #{islocked,jdbcType=BIT}, #{lastlogintime,jdbcType=TIMESTAMP}, #{validtime,jdbcType=TIMESTAMP}, 
+      #{description,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.loongray.ecms.mybatis.pojo.CfgUser">
+    insert into cfguser
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        UserId,
+      </if>
+      <if test="userrole != null">
+        UserRole,
+      </if>
+      <if test="username != null">
+        UserName,
+      </if>
+      <if test="loginid != null">
+        LoginId,
+      </if>
+      <if test="password != null">
+        Password,
+      </if>
+      <if test="emailaddress != null">
+        EmailAddress,
+      </if>
+      <if test="signquestion != null">
+        SignQuestion,
+      </if>
+      <if test="signanswer != null">
+        SignAnswer,
+      </if>
+      <if test="retrycount != null">
+        RetryCount,
+      </if>
+      <if test="islocked != null">
+        IsLocked,
+      </if>
+      <if test="lastlogintime != null">
+        LastLoginTime,
+      </if>
+      <if test="validtime != null">
+        ValidTime,
+      </if>
+      <if test="description != null">
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="userrole != null">
+        #{userrole,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="loginid != null">
+        #{loginid,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="emailaddress != null">
+        #{emailaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="signquestion != null">
+        #{signquestion,jdbcType=VARCHAR},
+      </if>
+      <if test="signanswer != null">
+        #{signanswer,jdbcType=VARCHAR},
+      </if>
+      <if test="retrycount != null">
+        #{retrycount,jdbcType=INTEGER},
+      </if>
+      <if test="islocked != null">
+        #{islocked,jdbcType=BIT},
+      </if>
+      <if test="lastlogintime != null">
+        #{lastlogintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validtime != null">
+        #{validtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.loongray.ecms.mybatis.pojo.CfgUser">
+    update cfguser
+    <set>
+      <if test="userrole != null">
+        UserRole = #{userrole,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        UserName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="loginid != null">
+        LoginId = #{loginid,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        Password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="emailaddress != null">
+        EmailAddress = #{emailaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="signquestion != null">
+        SignQuestion = #{signquestion,jdbcType=VARCHAR},
+      </if>
+      <if test="signanswer != null">
+        SignAnswer = #{signanswer,jdbcType=VARCHAR},
+      </if>
+      <if test="retrycount != null">
+        RetryCount = #{retrycount,jdbcType=INTEGER},
+      </if>
+      <if test="islocked != null">
+        IsLocked = #{islocked,jdbcType=BIT},
+      </if>
+      <if test="lastlogintime != null">
+        LastLoginTime = #{lastlogintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validtime != null">
+        ValidTime = #{validtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        Description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where UserId = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.loongray.ecms.mybatis.pojo.CfgUser">
+    update cfguser
+    set UserRole = #{userrole,jdbcType=INTEGER},
+      UserName = #{username,jdbcType=VARCHAR},
+      LoginId = #{loginid,jdbcType=VARCHAR},
+      Password = #{password,jdbcType=VARCHAR},
+      EmailAddress = #{emailaddress,jdbcType=VARCHAR},
+      SignQuestion = #{signquestion,jdbcType=VARCHAR},
+      SignAnswer = #{signanswer,jdbcType=VARCHAR},
+      RetryCount = #{retrycount,jdbcType=INTEGER},
+      IsLocked = #{islocked,jdbcType=BIT},
+      LastLoginTime = #{lastlogintime,jdbcType=TIMESTAMP},
+      ValidTime = #{validtime,jdbcType=TIMESTAMP},
+      Description = #{description,jdbcType=LONGVARCHAR}
+    where UserId = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.loongray.ecms.mybatis.pojo.CfgUser">
+    update cfguser
+    set UserRole = #{userrole,jdbcType=INTEGER},
+      UserName = #{username,jdbcType=VARCHAR},
+      LoginId = #{loginid,jdbcType=VARCHAR},
+      Password = #{password,jdbcType=VARCHAR},
+      EmailAddress = #{emailaddress,jdbcType=VARCHAR},
+      SignQuestion = #{signquestion,jdbcType=VARCHAR},
+      SignAnswer = #{signanswer,jdbcType=VARCHAR},
+      RetryCount = #{retrycount,jdbcType=INTEGER},
+      IsLocked = #{islocked,jdbcType=BIT},
+      LastLoginTime = #{lastlogintime,jdbcType=TIMESTAMP},
+      ValidTime = #{validtime,jdbcType=TIMESTAMP}
+    where UserId = #{userid,jdbcType=INTEGER}
+  </update>
+</mapper>

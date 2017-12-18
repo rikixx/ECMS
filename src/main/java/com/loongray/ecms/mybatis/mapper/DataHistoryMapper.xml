@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loongray.ecms.mybatis.dao.DataHistoryMapper">
+  <resultMap id="BaseResultMap" type="com.loongray.ecms.mybatis.pojo.DataHistory">
+    <result column="SignalId" jdbcType="INTEGER" property="signalid" />
+    <result column="Value" jdbcType="DOUBLE" property="value" />
+    <result column="MeasureTime" jdbcType="TIMESTAMP" property="measuretime" />
+    <result column="TagName" jdbcType="VARCHAR" property="tagname" />
+  </resultMap>
+  <insert id="insert" parameterType="com.loongray.ecms.mybatis.pojo.DataHistory">
+    insert into datahistory (SignalId, Value, MeasureTime, 
+      TagName)
+    values (#{signalid,jdbcType=INTEGER}, #{value,jdbcType=DOUBLE}, #{measuretime,jdbcType=TIMESTAMP}, 
+      #{tagname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.loongray.ecms.mybatis.pojo.DataHistory">
+    insert into datahistory
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="signalid != null">
+        SignalId,
+      </if>
+      <if test="value != null">
+        Value,
+      </if>
+      <if test="measuretime != null">
+        MeasureTime,
+      </if>
+      <if test="tagname != null">
+        TagName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="signalid != null">
+        #{signalid,jdbcType=INTEGER},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=DOUBLE},
+      </if>
+      <if test="measuretime != null">
+        #{measuretime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tagname != null">
+        #{tagname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

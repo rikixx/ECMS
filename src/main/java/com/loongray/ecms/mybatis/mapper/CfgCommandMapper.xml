@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loongray.ecms.mybatis.dao.CfgCommandMapper">
+  <resultMap id="BaseResultMap" type="com.loongray.ecms.mybatis.pojo.CfgCommand">
+    <id column="CommandId" jdbcType="INTEGER" property="commandid" />
+    <result column="CommandName" jdbcType="VARCHAR" property="commandname" />
+    <result column="EquipmentId" jdbcType="INTEGER" property="equipmentid" />
+    <result column="MachineId" jdbcType="INTEGER" property="machineid" />
+    <result column="CommandGroupId" jdbcType="INTEGER" property="commandgroupid" />
+    <result column="TemplateId" jdbcType="INTEGER" property="templateid" />
+    <result column="TargetIp" jdbcType="VARCHAR" property="targetip" />
+    <result column="TargetPort" jdbcType="INTEGER" property="targetport" />
+    <result column="TemplateCommand" jdbcType="BIT" property="templatecommand" />
+    <result column="AutoExecDelay" jdbcType="INTEGER" property="autoexecdelay" />
+    <result column="AutoExecTimes" jdbcType="INTEGER" property="autoexectimes" />
+    <result column="NeedAutoExec" jdbcType="BIT" property="needautoexec" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.loongray.ecms.mybatis.pojo.CfgCommandWithBLOBs">
+    <result column="Description" jdbcType="LONGVARCHAR" property="description" />
+    <result column="Contents" jdbcType="LONGVARCHAR" property="contents" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CommandId, CommandName, EquipmentId, MachineId, CommandGroupId, TemplateId, TargetIp, 
+    TargetPort, TemplateCommand, AutoExecDelay, AutoExecTimes, NeedAutoExec
+  </sql>
+  <sql id="Blob_Column_List">
+    Description, Contents
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cfgcommand
+    where CommandId = #{commandid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cfgcommand
+    where CommandId = #{commandid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.loongray.ecms.mybatis.pojo.CfgCommandWithBLOBs">
+    insert into cfgcommand (CommandId, CommandName, EquipmentId, 
+      MachineId, CommandGroupId, TemplateId, 
+      TargetIp, TargetPort, TemplateCommand, 
+      AutoExecDelay, AutoExecTimes, NeedAutoExec, 
+      Description, Contents)
+    values (#{commandid,jdbcType=INTEGER}, #{commandname,jdbcType=VARCHAR}, #{equipmentid,jdbcType=INTEGER}, 
+      #{machineid,jdbcType=INTEGER}, #{commandgroupid,jdbcType=INTEGER}, #{templateid,jdbcType=INTEGER}, 
+      #{targetip,jdbcType=VARCHAR}, #{targetport,jdbcType=INTEGER}, #{templatecommand,jdbcType=BIT}, 
+      #{autoexecdelay,jdbcType=INTEGER}, #{autoexectimes,jdbcType=INTEGER}, #{needautoexec,jdbcType=BIT}, 
+      #{description,jdbcType=LONGVARCHAR}, #{contents,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.loongray.ecms.mybatis.pojo.CfgCommandWithBLOBs">
+    insert into cfgcommand
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="commandid != null">
+        CommandId,
+      </if>
+      <if test="commandname != null">
+        CommandName,
+      </if>
+      <if test="equipmentid != null">
+        EquipmentId,
+      </if>
+      <if test="machineid != null">
+        MachineId,
+      </if>
+      <if test="commandgroupid != null">
+        CommandGroupId,
+      </if>
+      <if test="templateid != null">
+        TemplateId,
+      </if>
+      <if test="targetip != null">
+        TargetIp,
+      </if>
+      <if test="targetport != null">
+        TargetPort,
+      </if>
+      <if test="templatecommand != null">
+        TemplateCommand,
+      </if>
+      <if test="autoexecdelay != null">
+        AutoExecDelay,
+      </if>
+      <if test="autoexectimes != null">
+        AutoExecTimes,
+      </if>
+      <if test="needautoexec != null">
+        NeedAutoExec,
+      </if>
+      <if test="description != null">
+        Description,
+      </if>
+      <if test="contents != null">
+        Contents,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="commandid != null">
+        #{commandid,jdbcType=INTEGER},
+      </if>
+      <if test="commandname != null">
+        #{commandname,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentid != null">
+        #{equipmentid,jdbcType=INTEGER},
+      </if>
+      <if test="machineid != null">
+        #{machineid,jdbcType=INTEGER},
+      </if>
+      <if test="commandgroupid != null">
+        #{commandgroupid,jdbcType=INTEGER},
+      </if>
+      <if test="templateid != null">
+        #{templateid,jdbcType=INTEGER},
+      </if>
+      <if test="targetip != null">
+        #{targetip,jdbcType=VARCHAR},
+      </if>
+      <if test="targetport != null">
+        #{targetport,jdbcType=INTEGER},
+      </if>
+      <if test="templatecommand != null">
+        #{templatecommand,jdbcType=BIT},
+      </if>
+      <if test="autoexecdelay != null">
+        #{autoexecdelay,jdbcType=INTEGER},
+      </if>
+      <if test="autoexectimes != null">
+        #{autoexectimes,jdbcType=INTEGER},
+      </if>
+      <if test="needautoexec != null">
+        #{needautoexec,jdbcType=BIT},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="contents != null">
+        #{contents,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.loongray.ecms.mybatis.pojo.CfgCommandWithBLOBs">
+    update cfgcommand
+    <set>
+      <if test="commandname != null">
+        CommandName = #{commandname,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentid != null">
+        EquipmentId = #{equipmentid,jdbcType=INTEGER},
+      </if>
+      <if test="machineid != null">
+        MachineId = #{machineid,jdbcType=INTEGER},
+      </if>
+      <if test="commandgroupid != null">
+        CommandGroupId = #{commandgroupid,jdbcType=INTEGER},
+      </if>
+      <if test="templateid != null">
+        TemplateId = #{templateid,jdbcType=INTEGER},
+      </if>
+      <if test="targetip != null">
+        TargetIp = #{targetip,jdbcType=VARCHAR},
+      </if>
+      <if test="targetport != null">
+        TargetPort = #{targetport,jdbcType=INTEGER},
+      </if>
+      <if test="templatecommand != null">
+        TemplateCommand = #{templatecommand,jdbcType=BIT},
+      </if>
+      <if test="autoexecdelay != null">
+        AutoExecDelay = #{autoexecdelay,jdbcType=INTEGER},
+      </if>
+      <if test="autoexectimes != null">
+        AutoExecTimes = #{autoexectimes,jdbcType=INTEGER},
+      </if>
+      <if test="needautoexec != null">
+        NeedAutoExec = #{needautoexec,jdbcType=BIT},
+      </if>
+      <if test="description != null">
+        Description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="contents != null">
+        Contents = #{contents,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where CommandId = #{commandid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.loongray.ecms.mybatis.pojo.CfgCommandWithBLOBs">
+    update cfgcommand
+    set CommandName = #{commandname,jdbcType=VARCHAR},
+      EquipmentId = #{equipmentid,jdbcType=INTEGER},
+      MachineId = #{machineid,jdbcType=INTEGER},
+      CommandGroupId = #{commandgroupid,jdbcType=INTEGER},
+      TemplateId = #{templateid,jdbcType=INTEGER},
+      TargetIp = #{targetip,jdbcType=VARCHAR},
+      TargetPort = #{targetport,jdbcType=INTEGER},
+      TemplateCommand = #{templatecommand,jdbcType=BIT},
+      AutoExecDelay = #{autoexecdelay,jdbcType=INTEGER},
+      AutoExecTimes = #{autoexectimes,jdbcType=INTEGER},
+      NeedAutoExec = #{needautoexec,jdbcType=BIT},
+      Description = #{description,jdbcType=LONGVARCHAR},
+      Contents = #{contents,jdbcType=LONGVARCHAR}
+    where CommandId = #{commandid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.loongray.ecms.mybatis.pojo.CfgCommand">
+    update cfgcommand
+    set CommandName = #{commandname,jdbcType=VARCHAR},
+      EquipmentId = #{equipmentid,jdbcType=INTEGER},
+      MachineId = #{machineid,jdbcType=INTEGER},
+      CommandGroupId = #{commandgroupid,jdbcType=INTEGER},
+      TemplateId = #{templateid,jdbcType=INTEGER},
+      TargetIp = #{targetip,jdbcType=VARCHAR},
+      TargetPort = #{targetport,jdbcType=INTEGER},
+      TemplateCommand = #{templatecommand,jdbcType=BIT},
+      AutoExecDelay = #{autoexecdelay,jdbcType=INTEGER},
+      AutoExecTimes = #{autoexectimes,jdbcType=INTEGER},
+      NeedAutoExec = #{needautoexec,jdbcType=BIT}
+    where CommandId = #{commandid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loongray.ecms.mybatis.dao.CfgBuildingGroupMapper">
+  <resultMap id="BaseResultMap" type="com.loongray.ecms.mybatis.pojo.CfgBuildingGroup">
+    <id column="GroupId" jdbcType="INTEGER" property="groupid" />
+    <result column="ProjectId" jdbcType="INTEGER" property="projectid" />
+    <result column="GroupName" jdbcType="VARCHAR" property="groupname" />
+    <result column="ProvinceId" jdbcType="INTEGER" property="provinceid" />
+    <result column="CityId" jdbcType="INTEGER" property="cityid" />
+    <result column="Acreage" jdbcType="DOUBLE" property="acreage" />
+    <result column="Developers" jdbcType="VARCHAR" property="developers" />
+    <result column="CompletedDate" jdbcType="VARCHAR" property="completeddate" />
+    <result column="InfoCreateUserId" jdbcType="INTEGER" property="infocreateuserid" />
+    <result column="InfoCreateTime" jdbcType="TIMESTAMP" property="infocreatetime" />
+    <result column="Deleted" jdbcType="BIT" property="deleted" />
+    <result column="MemberCount" jdbcType="INTEGER" property="membercount" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.loongray.ecms.mybatis.pojo.CfgBuildingGroup">
+    <result column="Description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GroupId, ProjectId, GroupName, ProvinceId, CityId, Acreage, Developers, CompletedDate, 
+    InfoCreateUserId, InfoCreateTime, Deleted, MemberCount
+  </sql>
+  <sql id="Blob_Column_List">
+    Description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cfgbuildinggroup
+    where GroupId = #{groupid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cfgbuildinggroup
+    where GroupId = #{groupid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.loongray.ecms.mybatis.pojo.CfgBuildingGroup">
+    insert into cfgbuildinggroup (GroupId, ProjectId, GroupName, 
+      ProvinceId, CityId, Acreage, 
+      Developers, CompletedDate, InfoCreateUserId, 
+      InfoCreateTime, Deleted, MemberCount, 
+      Description)
+    values (#{groupid,jdbcType=INTEGER}, #{projectid,jdbcType=INTEGER}, #{groupname,jdbcType=VARCHAR}, 
+      #{provinceid,jdbcType=INTEGER}, #{cityid,jdbcType=INTEGER}, #{acreage,jdbcType=DOUBLE}, 
+      #{developers,jdbcType=VARCHAR}, #{completeddate,jdbcType=VARCHAR}, #{infocreateuserid,jdbcType=INTEGER}, 
+      #{infocreatetime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}, #{membercount,jdbcType=INTEGER}, 
+      #{description,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.loongray.ecms.mybatis.pojo.CfgBuildingGroup">
+    insert into cfgbuildinggroup
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="groupid != null">
+        GroupId,
+      </if>
+      <if test="projectid != null">
+        ProjectId,
+      </if>
+      <if test="groupname != null">
+        GroupName,
+      </if>
+      <if test="provinceid != null">
+        ProvinceId,
+      </if>
+      <if test="cityid != null">
+        CityId,
+      </if>
+      <if test="acreage != null">
+        Acreage,
+      </if>
+      <if test="developers != null">
+        Developers,
+      </if>
+      <if test="completeddate != null">
+        CompletedDate,
+      </if>
+      <if test="infocreateuserid != null">
+        InfoCreateUserId,
+      </if>
+      <if test="infocreatetime != null">
+        InfoCreateTime,
+      </if>
+      <if test="deleted != null">
+        Deleted,
+      </if>
+      <if test="membercount != null">
+        MemberCount,
+      </if>
+      <if test="description != null">
+        Description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="groupid != null">
+        #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="projectid != null">
+        #{projectid,jdbcType=INTEGER},
+      </if>
+      <if test="groupname != null">
+        #{groupname,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceid != null">
+        #{provinceid,jdbcType=INTEGER},
+      </if>
+      <if test="cityid != null">
+        #{cityid,jdbcType=INTEGER},
+      </if>
+      <if test="acreage != null">
+        #{acreage,jdbcType=DOUBLE},
+      </if>
+      <if test="developers != null">
+        #{developers,jdbcType=VARCHAR},
+      </if>
+      <if test="completeddate != null">
+        #{completeddate,jdbcType=VARCHAR},
+      </if>
+      <if test="infocreateuserid != null">
+        #{infocreateuserid,jdbcType=INTEGER},
+      </if>
+      <if test="infocreatetime != null">
+        #{infocreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=BIT},
+      </if>
+      <if test="membercount != null">
+        #{membercount,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.loongray.ecms.mybatis.pojo.CfgBuildingGroup">
+    update cfgbuildinggroup
+    <set>
+      <if test="projectid != null">
+        ProjectId = #{projectid,jdbcType=INTEGER},
+      </if>
+      <if test="groupname != null">
+        GroupName = #{groupname,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceid != null">
+        ProvinceId = #{provinceid,jdbcType=INTEGER},
+      </if>
+      <if test="cityid != null">
+        CityId = #{cityid,jdbcType=INTEGER},
+      </if>
+      <if test="acreage != null">
+        Acreage = #{acreage,jdbcType=DOUBLE},
+      </if>
+      <if test="developers != null">
+        Developers = #{developers,jdbcType=VARCHAR},
+      </if>
+      <if test="completeddate != null">
+        CompletedDate = #{completeddate,jdbcType=VARCHAR},
+      </if>
+      <if test="infocreateuserid != null">
+        InfoCreateUserId = #{infocreateuserid,jdbcType=INTEGER},
+      </if>
+      <if test="infocreatetime != null">
+        InfoCreateTime = #{infocreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        Deleted = #{deleted,jdbcType=BIT},
+      </if>
+      <if test="membercount != null">
+        MemberCount = #{membercount,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        Description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where GroupId = #{groupid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.loongray.ecms.mybatis.pojo.CfgBuildingGroup">
+    update cfgbuildinggroup
+    set ProjectId = #{projectid,jdbcType=INTEGER},
+      GroupName = #{groupname,jdbcType=VARCHAR},
+      ProvinceId = #{provinceid,jdbcType=INTEGER},
+      CityId = #{cityid,jdbcType=INTEGER},
+      Acreage = #{acreage,jdbcType=DOUBLE},
+      Developers = #{developers,jdbcType=VARCHAR},
+      CompletedDate = #{completeddate,jdbcType=VARCHAR},
+      InfoCreateUserId = #{infocreateuserid,jdbcType=INTEGER},
+      InfoCreateTime = #{infocreatetime,jdbcType=TIMESTAMP},
+      Deleted = #{deleted,jdbcType=BIT},
+      MemberCount = #{membercount,jdbcType=INTEGER},
+      Description = #{description,jdbcType=LONGVARCHAR}
+    where GroupId = #{groupid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.loongray.ecms.mybatis.pojo.CfgBuildingGroup">
+    update cfgbuildinggroup
+    set ProjectId = #{projectid,jdbcType=INTEGER},
+      GroupName = #{groupname,jdbcType=VARCHAR},
+      ProvinceId = #{provinceid,jdbcType=INTEGER},
+      CityId = #{cityid,jdbcType=INTEGER},
+      Acreage = #{acreage,jdbcType=DOUBLE},
+      Developers = #{developers,jdbcType=VARCHAR},
+      CompletedDate = #{completeddate,jdbcType=VARCHAR},
+      InfoCreateUserId = #{infocreateuserid,jdbcType=INTEGER},
+      InfoCreateTime = #{infocreatetime,jdbcType=TIMESTAMP},
+      Deleted = #{deleted,jdbcType=BIT},
+      MemberCount = #{membercount,jdbcType=INTEGER}
+    where GroupId = #{groupid,jdbcType=INTEGER}
+  </update>
+</mapper>
